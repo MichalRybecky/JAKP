@@ -1,29 +1,48 @@
 """
+JAKP
+
 Hlavny file projektu,
-sluzi na spustanie modulov a submodulov
+menu, sluzi na spustanie modulov a submodulov
 """
 
-import tkinter
+import pygame
+import os
 
 HEIGHT=900
 WIDTH=500
 
-canvas = tkinter.Canvas(height=HEIGHT, width=WIDTH)
-canvas.pack()
+# PyGame setup
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("JAKP")
 
-x_spacing = 135
-y_spacing = 160
-size = 50
-x, y = x_spacing // 1.5, y_spacing // 1.5
-count = 0
-for i in range(5):
-    for j in range(3):
-        canvas.create_rectangle(x, y, x + size, y + size)
-        canvas.create_text(x + size // 2, y + size // 2, text=count)
-        x += x_spacing
-        count += 1
-    y += y_spacing
-    x = x_spacing // 1.5
+# Loading assets
+#BG = pygame.transform.scale(
+#        pygame.image.load(os.path.join("bg.png")), (WIDTH, HEIGHT))
 
-canvas.mainloop()
+def main():
+    run = True
+    click = False 
+    # main app loop
+    while run:
+        #WIN.blit(BG, (0, 0))
 
+        pos_x, pos_y = pygame.mouse.get_pos()
+
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    click = False
+
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
