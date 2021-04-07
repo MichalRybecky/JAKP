@@ -1,7 +1,7 @@
 ## JAKP - Jediná Aplikácia, Ktorú Potrebujete
 ### Dependencies
 `python3` <br />
-`tkinter` <br />
+`pygame` - `pip3 install pygame` <br />
 ### Prečo?
 Lebo proste chceme.
 ### File layout
