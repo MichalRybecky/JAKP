@@ -1,19 +1,32 @@
-Jedina Aplikacia Ktoru Potrebujete - JAKP
+=====================================
+|			JAKP TODO list			|
+=====================================
 
 Funkcionalita:
 	Kebab kalkulacka - Maxo
-		rozne pobocky, ceny podla vybratej pobocky
+		- rozne pobocky, ceny podla vybratej pobocky
+		
 	Matematicka kalkulacka
-		objemy, obsahy kalkulacka
-		premena jednotiek
-		statisticke vypocty: median, modus, priemery...
-		financna matematika: uroky...
-		kvadraticka rovnica kalkulacka
+		- objemy, obsahy kalkulacka
+		- premena jednotiek
+		- statisticke vypocty: median, modus, priemery...
+		- financna matematika: uroky...
+		- kvadraticka rovnica kalkulacka
+
 	Uporiadavac podla abecedy
+
 	Prevodnik ciselnych sustav
-	Kalkulacka zivota - Samo Taufer
+
+	Kalkulacka zivota
+
 	Prevodnik mien
+
+	Current stock price - Mikenek
+
 	Otvaranie SSDLS loot boxov (ked sa budu buduce generacie nudit)
-		tocenie
-		zapis vytocenych veci to CSV suboru
-		precitanie vytocenych veci a zobrazenie inventaru
+		- tocenie
+		- zapis vytocenych veci to CSV suboru
+		- precitanie vytocenych veci a zobrazenie inventaru
+
+GUI:
+	Ikonky - Samo
