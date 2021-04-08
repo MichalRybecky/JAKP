@@ -15,13 +15,18 @@ HEIGHT_H = HEIGHT // 2
 WIDTH_H = WIDTH // 2
 
 # PyGame setup
+pygame.init()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("JAKP")
+main_font = pygame.font.Font("pixel_font.ttf", 15)
 
 # Loading assets
 # ked tu toho bude vela, nadzigat do samostatneho modulu
 #BG = pygame.transform.scale(
 #        pygame.image.load(os.path.join("bg.png")), (WIDTH, HEIGHT))
+
+KEBAB = pygame.image.load(os.path.join("assets", "kebab_101.png"))
+KEBAB = pygame.transform.scale(KEBAB, (130, 130))
 
 
 def collide(obj1, obj2) -> bool:
@@ -39,27 +44,19 @@ def main():
     # main app loop
     while run:
         #WIN.blit(BG, (0, 0))
-        pygame.draw.rect(WIN, (100, 100, 100), pygame.Rect(0, 0, WIDTH, HEIGHT))
+        pygame.draw.rect(WIN, (220, 220, 220), pygame.Rect(0, 0, WIDTH, HEIGHT))
 
         pos_x, pos_y = pygame.mouse.get_pos()
 
-        # Menu Buttons
-        # skarede jak noc, zatial iba pre debbugovanie
-        b_size = 40
-        b_size_h = b_size // 2
-        b_color = (204, 204, 204)
-        b_1 = pygame.Rect((WIDTH_H // 2) - b_size_h, HEIGHT_H // 2, b_size, b_size)
-        b_2 = pygame.Rect(WIDTH_H - b_size_h, HEIGHT_H // 2, b_size, b_size)
-        b_3 = pygame.Rect((WIDTH_H // 2 * 3) - b_size_h, HEIGHT_H // 2, b_size, b_size)
-
-        pygame.draw.rect(WIN, b_color, b_1)
-        pygame.draw.rect(WIN, b_color, b_2)
-        pygame.draw.rect(WIN, b_color, b_3)
+        # kebab
+        WIN.blit(KEBAB, ((WIDTH_H // 2) - 40, HEIGHT_H // 3))
+        label_kebab = main_font.render("Kebab", 1, (10, 10, 10))
+        WIN.blit(label_kebab, ((WIDTH_H // 2) - 30, (HEIGHT_H // 3) + 140))
 
         # Button Activations
-        if b_1.collidepoint(pos_x, pos_y):
-            if click:
-                print("si klikol, gratulka jak sa hovori")
+        #if b_1.collidepoint(pos_x, pos_y):
+        #    if click:
+        #        print("si klikol, gratulka jak sa hovori")
 
         pygame.display.update()
         for event in pygame.event.get():
