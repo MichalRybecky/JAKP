@@ -29,11 +29,6 @@ Funkcionalita:
 		- precitanie vytocenych veci a zobrazenie inventaru
 
 GUI:
-	Ikonky ku appkam
-		- ku vsetkym modulom z listu funkcionalit
-	
 	Navrat do menu ikonka
 
 	(hamburger) menu ikonka na About, Settings... menu
-
-	BG pre hlavne menu
