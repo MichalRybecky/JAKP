@@ -32,3 +32,5 @@ GUI:
 	Navrat do menu ikonka
 
 	(hamburger) menu ikonka na About, Settings... menu
+
+	X ikonka na odidenie z appky
