@@ -65,7 +65,7 @@ def gbp_to_eur(gpb):
     return round(gpb / 0.86065, 2)
 
 def czk_to_eur(czk):
-    return round(gpb / 25.919, 2)
+    return round(czk / 25.919, 2)
 
 #Madare
 def huf_to_eur(huf):
