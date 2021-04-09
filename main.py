@@ -4,26 +4,18 @@ JAKP
 Hlavny file projektu,
 menu, sluzi na spustanie modulov a submodulov
 """
-
 import os
 import pygame
 
 from settings import *
 from utils.load_assets import *
 from utils.kebab import kebab_app
+from utils.meny import meny_app
 
-#HEIGHT = 900
-#WIDTH = 500
-
-#HEIGHT_H = HEIGHT // 2
-#WIDTH_H = WIDTH // 2
-#icon_size = 110
 
 # PyGame setup
 pygame.init()
-#WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("JAKP")
-main_font = pygame.font.Font("pixel_font.ttf", 12)
 
 
 def main():
@@ -35,24 +27,24 @@ def main():
         WIN.blit(BG, (0, 0))
 
         # BUTTONS
-        B_KEBAB = pygame.Rect((WIDTH_H - icon_size_h) // 2, HEIGHT_H // 3, icon_size, icon_size)
-        B_A_SORT = pygame.Rect((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H // 3, icon_size, icon_size)
-        B_CASE = pygame.Rect((WIDTH_H - icon_size_h) // 2, HEIGHT_H - icon_size, icon_size, icon_size)
-        B_LIFE = pygame.Rect((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H - icon_size, icon_size, icon_size)
-        B_MATHE = pygame.Rect((WIDTH_H - icon_size_h) // 2, HEIGHT_H + icon_size - 30, icon_size, icon_size)
-        B_CALCUL = pygame.Rect((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H + icon_size - 30, icon_size, icon_size)
-        B_MENY = pygame.Rect((WIDTH_H - icon_size_h) // 2, HEIGHT_H * 3 // 2 + 40, icon_size, icon_size)
-        B_STOCKS = pygame.Rect((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H * 3 // 2 + 40, icon_size, icon_size)
+        B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
+        B_A_SORT = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
+        B_CASE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
+        B_LIFE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
+        B_MATHE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
+        B_CALCUL = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
+        B_MENY = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
+        B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
 
         # ICONS
-        WIN.blit(KEBAB, ((WIDTH_H - icon_size_h) // 2, HEIGHT_H // 3))
-        WIN.blit(A_SORT, ((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H // 3))
-        WIN.blit(CASE, ((WIDTH_H - icon_size_h) // 2, HEIGHT_H - icon_size))
-        WIN.blit(LIFE, ((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H - icon_size))
-        WIN.blit(MATHE, ((WIDTH_H - icon_size_h) // 2, HEIGHT_H + icon_size - 30))
-        WIN.blit(CALCUL, ((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H + icon_size - 30))
-        WIN.blit(MENY, ((WIDTH_H - icon_size_h) // 2, HEIGHT_H * 3 // 2 + 40))
-        WIN.blit(STOCKS, ((WIDTH_H - icon_size_h) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
+        WIN.blit(KEBAB, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3))
+        WIN.blit(A_SORT, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3))
+        WIN.blit(CASE, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE))
+        WIN.blit(LIFE, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE))
+        WIN.blit(MATHE, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30))
+        WIN.blit(CALCUL, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30))
+        WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
+        WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
 
         # LABELS
         # label_kebab = main_font.render("Kebab", 1, (10, 10, 10))
@@ -60,7 +52,7 @@ def main():
         #    label_kebab,
         #    (
         #        (WIDTH_H - (label_kebab.get_width() // 2)) // 2 + 20,
-        #        (HEIGHT_H // 3) + icon_size,
+        #        (HEIGHT_H // 3) + ICON_SIZE,
         #    ),
         # )
 
@@ -82,6 +74,7 @@ def main():
                 print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
                 print("MENY")
+                meny_app()
             elif B_STOCKS.collidepoint(pos_x, pos_y):
                 print("STOCKS")
 
