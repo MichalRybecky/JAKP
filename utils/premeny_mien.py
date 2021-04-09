@@ -3,8 +3,28 @@
 #Denný kurzový lístok ECB 
 #valid: 7.4.2021
 
+"""
+Trosku postrcenie do right direction, ako by to malo vyzerat:
+    maly by tu byt dve funkcie, jedna na eur->ina mena, 
+    a druha ina mena->eur.
+Skus to tak spravit, nizsie je template kod, podla ktoreho to mozes skusit
+"""
 
+kurzy = {"usd": 1.1884, "gbp": 0.86065}
+def from_eur(mena, hodnota):
+   vysledok = kurzy[mena] * hodnota
+   return vysledok
 
+"""
+Vpodstate by horna funkcia mala vpohode fungovat, ale prekontroluj to radsej.
+Ak funguje, staci to dictionary `kurzy` dopisat vsetky meny a ich kurzy,
+v takom style, ako tam uz su gbp a usd.
+A potom rovnakym sposobom spravit aj `to_eur` funkciu.
+Keby nieco, pis, ak to budes mat hotove a bude to fungovat, tieto dva dlhe
+commenty mozes zmazat.
+"""
+
+print(from_eur("gbp", 5))
 ## eur to xyz ##
 def eur_to_usd(eur):
     return round(eur * 1.1884, 2)
