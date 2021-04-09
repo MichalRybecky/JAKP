@@ -6,12 +6,9 @@ aby sme v main.py nemali bordel
 import os
 import pygame
 
-WIDTH, HEIGHT = 900, 500
+from settings import WIDTH, HEIGHT, icon_size, icon_size_h
 
 pygame.init()
-
-icon_size = 110
-icon_size_h = icon_size // 2
 
 BG = pygame.image.load(os.path.join("assets", "wall_flat.png"))
 BG = pygame.transform.scale(BG, (500, 900))

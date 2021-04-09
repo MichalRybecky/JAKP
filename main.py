@@ -8,18 +8,20 @@ menu, sluzi na spustanie modulov a submodulov
 import os
 import pygame
 
+from settings import *
 from utils.load_assets import *
+from utils.kebab import kebab_app
 
-HEIGHT = 900
-WIDTH = 500
+#HEIGHT = 900
+#WIDTH = 500
 
-HEIGHT_H = HEIGHT // 2
-WIDTH_H = WIDTH // 2
-icon_size = 110
+#HEIGHT_H = HEIGHT // 2
+#WIDTH_H = WIDTH // 2
+#icon_size = 110
 
 # PyGame setup
 pygame.init()
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+#WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("JAKP")
 main_font = pygame.font.Font("pixel_font.ttf", 12)
 
@@ -98,34 +100,6 @@ def main():
 
     pygame.quit()
 
-
-def kebab_app():
-    """
-    GUI pre Kebab appku
-    """
-    run = True
-    click = False
-    while run:
-        pos_x, pos_y = pygame.mouse.get_pos()
-        WIN.blit(BG, (0, 0))
-        ### Kod pod tento koment
-        
-
-        ### Kod nad tento koment
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click = True
-
-            if event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    click = False
-
-    pygame.quit()
 
 if __name__ == "__main__":
     main()
