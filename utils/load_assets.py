@@ -6,27 +6,30 @@ aby sme v main.py nemali bordel
 import os
 import pygame
 
-from settings import WIDTH, HEIGHT, icon_size, icon_size_h
+from settings import WIDTH, HEIGHT, ICON_SIZE, ICON_SIZE_H
 
 pygame.init()
 
+MAIN_FONT = pygame.font.Font("pixel_font.ttf", 12)
+BIG_FONT = pygame.font.Font("pixel_font.ttf", 20)
+SMALL_FONT = pygame.font.Font("pixel_font.ttf", 8)
 BG = pygame.image.load(os.path.join("assets", "wall_flat.png"))
 BG = pygame.transform.scale(BG, (500, 900))
 KEBAB = pygame.image.load(os.path.join("assets", "kebab_101.png"))
-KEBAB = pygame.transform.scale(KEBAB, (icon_size, icon_size))
+KEBAB = pygame.transform.scale(KEBAB, (ICON_SIZE, ICON_SIZE))
 A_SORT = pygame.image.load(os.path.join("assets", "male_a.png"))
-A_SORT = pygame.transform.scale(A_SORT, (icon_size, icon_size))
+A_SORT = pygame.transform.scale(A_SORT, (ICON_SIZE, ICON_SIZE))
 CASE = pygame.image.load(os.path.join("assets", "case.png"))
-CASE = pygame.transform.scale(CASE, (icon_size, icon_size))
+CASE = pygame.transform.scale(CASE, (ICON_SIZE, ICON_SIZE))
 LIFE = pygame.image.load(os.path.join("assets", "life_is_life.png"))
-LIFE = pygame.transform.scale(LIFE, (icon_size, icon_size))
+LIFE = pygame.transform.scale(LIFE, (ICON_SIZE, ICON_SIZE))
 MATHE = pygame.image.load(os.path.join("assets", "cis_sustavy_smol.png"))
-MATHE = pygame.transform.scale(MATHE, (icon_size, icon_size))
+MATHE = pygame.transform.scale(MATHE, (ICON_SIZE, ICON_SIZE))
 CALCUL = pygame.image.load(os.path.join("assets", "mathe_calc_smol.png"))
-CALCUL = pygame.transform.scale(CALCUL, (icon_size, icon_size))
+CALCUL = pygame.transform.scale(CALCUL, (ICON_SIZE, ICON_SIZE))
 MENY = pygame.image.load(os.path.join("assets", "meny_smol.png"))
-MENY = pygame.transform.scale(MENY, (icon_size, icon_size))
+MENY = pygame.transform.scale(MENY, (ICON_SIZE, ICON_SIZE))
 SSDLS = pygame.image.load(os.path.join("assets", "ssdls_logo.jpg"))
-SSDLS = pygame.transform.scale(SSDLS, (icon_size, icon_size))
+SSDLS = pygame.transform.scale(SSDLS, (ICON_SIZE, ICON_SIZE))
 STOCKS = pygame.image.load(os.path.join("assets", "stocks.png"))
-STOCKS = pygame.transform.scale(STOCKS, (icon_size, icon_size))
+STOCKS = pygame.transform.scale(STOCKS, (ICON_SIZE, ICON_SIZE))
