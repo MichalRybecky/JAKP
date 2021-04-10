@@ -16,6 +16,7 @@ from utils.meny import meny_app
 # PyGame setup
 pygame.init()
 pygame.display.set_caption("JAKP")
+pygame.display.set_icon(ICON)
 
 
 def main():
