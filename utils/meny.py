@@ -14,13 +14,20 @@ def meny_app():
     cur_amount = pygame_textinput.TextInput()
     cur_from = pygame_textinput.TextInput("EUR")
     cur_to = pygame_textinput.TextInput("USD")
-    
+    events = pygame.event.get()
+    cur_from.update(events)
+    cur_to.update(events)
+    active = None
+
+    # BUTTON INITIALIZATION
+    B_CUR_AMOUNT = pygame.Rect(WIDTH_H - 150, HEIGHT_H + 150, 300, 40)
+    B_FROM = pygame.Rect(WIDTH_H - 150, HEIGHT_H - 200, 300, 40)
+    B_TO = pygame.Rect(WIDTH_H - 150, HEIGHT_H - 400, 300, 40)
+
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         WIN.blit(BG, (0, 0))
         
-        pygame.draw.rect(WIN, UI_COLOR, pygame.Rect(WIDTH_H - 150, HEIGHT_H + 150, 300, 40)) 
-
         #Event handling
         events = pygame.event.get()
         for event in events:
@@ -33,18 +40,29 @@ def meny_app():
                 if event.button == 1:
                     click = False
 
-        if cur_amount.update(events):
-            print(cur_amount.get_text())
-        elif cur_from.update(events):
-            print(cur_from.get_text())
-        elif cur_to.update(events):
-            print(cur_to.get_text())
-
-        # TEXTY
+        # BUTTONS, TEXTS AND COLLIDEPOINTS
+        pygame.draw.rect(WIN, UI_COLOR, B_CUR_AMOUNT)
         WIN.blit(cur_amount.get_surface(), (WIDTH_H - len(cur_amount.get_text()) * 6, HEIGHT_H + 160))
-        WIN.blit(cur_from.get_surface(), (100, 100))
-        WIN.blit(cur_to.get_surface(), (100, 100))
 
+        pygame.draw.rect(WIN, UI_COLOR, B_FROM)
+        WIN.blit(cur_from.get_surface(), (WIDTH_H - 150, HEIGHT_H - 200))
+
+        pygame.draw.rect(WIN, UI_COLOR, B_TO)
+        WIN.blit(cur_to.get_surface(), (WIDTH_H - 150, HEIGHT_H - 400))
+
+
+        if B_CUR_AMOUNT.collidepoint(pos_x, pos_y):
+            active = cur_amount
+        elif B_FROM.collidepoint(pos_x, pos_y):
+            active = cur_from
+        elif B_TO.collidepoint(pos_x, pos_y):
+            active = cur_to
+
+        try: 
+            active.update(events)
+        except AttributeError:
+            pass
+        
         # LABELS
         label_cur_amount = BIG_FONT.render("Penaze", 1, UI_COLOR)
         WIN.blit(label_cur_amount, (WIDTH_H - (label_cur_amount.get_width() // 2), HEIGHT_H + 100))
