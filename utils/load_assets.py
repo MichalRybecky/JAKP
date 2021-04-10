@@ -22,7 +22,7 @@ BACK = pygame.transform.scale(BACK, (60, 60))
 BACK = pygame.image.load(os.path.join("assets", "back.png"))
 BACK = pygame.transform.scale(BACK, (60, 60))
 X = pygame.image.load(os.path.join("assets", "x.png"))
-X = pygame.transform.scale(X, (60, 60))
+X = pygame.transform.scale(X, (65, 65))
 ICON = pygame.image.load(os.path.join("assets", "logo-stvorec.png"))
 
 
