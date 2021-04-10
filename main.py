@@ -22,25 +22,25 @@ pygame.display.set_icon(ICON)
 def main():
     run = True
     click = False
+
+    # BUTTONS INITIALIZATION
+    B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
+    B_A_SORT = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
+    B_CASE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
+    B_LIFE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
+    B_MATHE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
+    B_CALCUL = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
+    B_MENY = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
+    B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
+    B_X = pygame.Rect(10, 10, 60, 60)
+    B_MENU = pygame.Rect(WIDTH - 60 - 10, 10, 60, 60)
+
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         WIN.blit(BG, (0, 0))
 
-        # BUTTONS
-        B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
-        B_A_SORT = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
-        B_CASE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-        B_LIFE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-        B_MATHE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
-        B_CALCUL = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
-        B_MENY = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
-        B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
-
-        B_X = pygame.Rect(10, 10, 60, 60)
-        B_MENU = pygame.Rect(WIDTH - 60 - 10, 10, 60, 60)
-
-        # ICONS
+        # BLITING ICONS
         WIN.blit(KEBAB, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3))
         WIN.blit(A_SORT, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3))
         WIN.blit(CASE, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE))
@@ -49,7 +49,7 @@ def main():
         WIN.blit(CALCUL, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30))
         WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
         WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
-
+    
         WIN.blit(X, (10, 10))
         WIN.blit(MENU, (WIDTH - 60 - 10, 10))
 
