@@ -1,7 +1,7 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG, MAIN_FONT, BIG_FONT, BACK, MENU
+from utils.load_assets import BG_STOCKS, MAIN_FONT, BIG_FONT, BACK, MENU
 from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 
 from utils.stocks import get_price
@@ -9,32 +9,34 @@ from utils.stocks import get_price
 
 def stocks_app():
     """
-    GUI pre Stocks 
+    GUI pre Stocks
     """
     run = True
     click = False
     clock = pygame.time.Clock()
-    stock_input = pygame_textinput.TextInput(initial_string="GME")
+    stock_input = pygame_textinput.TextInput(
+        initial_string="GME", font_family="pixel_font.ttf", font_size=20
+    )
     events = pygame.event.get()
     stock_input.update(events)
     active = None
-    returned_price = 0.0
+    result = 0.0
 
     # BUTTON INITIALIZATION
-    B_STOCK_INPUT = pygame.Rect(WIDTH_H - 50, HEIGHT_H + 150, 100, 40)
-    B_GET_PRICE = pygame.Rect(WIDTH_H - 75, HEIGHT_H + 250, 150, 40)
-    B_RETURNED_PRICE = pygame.Rect(WIDTH_H - 100, HEIGHT_H + 350, 200, 40)
-    B_BACK = pygame.Rect(10, 10, 60, 60)
-    B_MENU = pygame.Rect(WIDTH - 60 - 10, 10, 60, 60)
-    
+    B_STOCK_INPUT = pygame.Rect(140, 260, 220, 95)
+    B_GET_PRICE = pygame.Rect(130, 385, 240, 65)
+    B_RETURNED_PRICE = pygame.Rect(140, 480, 220, 95)
+    B_BACK = pygame.Rect(20, 20, 60, 60)
+    B_MENU = pygame.Rect(WIDTH - 65 - 20, 20, 60, 60)
+
     # LABELS
-    label_zadaj_stock = BIG_FONT.render("Stock", 1, (0, 0, 0))
+    label_return = BIG_FONT.render("Return", 1, (0, 0, 0))
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        WIN.blit(BG, (0, 0))
-        WIN.blit(BACK, (10, 10))
-        WIN.blit(MENU, (WIDTH - 60 - 10, 10))
+        WIN.blit(BG_STOCKS, (0, 0))
+        WIN.blit(BACK, (20, 20))
+        WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
         # Event handling
         events = pygame.event.get()
@@ -49,24 +51,19 @@ def stocks_app():
                     click = False
 
         # BUTTONS AND COLLIDEPOINTS
-        pygame.draw.rect(WIN, UI_COLOR, B_STOCK_INPUT)
         WIN.blit(
             stock_input.get_surface(),
-            (WIDTH_H - len(stock_input.get_text()) * 6, HEIGHT_H + 160),
+            (WIDTH_H - len(stock_input.get_text()) * 14, 285),
         )
-        pygame.draw.rect(WIN, UI_COLOR, B_GET_PRICE)
-        pygame.draw.rect(WIN, UI_COLOR, B_RETURNED_PRICE)
 
         # LABELS
-        WIN.blit(
-            label_zadaj_stock,
-            (WIDTH_H - (label_zadaj_stock.get_width() // 2), HEIGHT_H + 100),
-        )
-        if returned_price != 0.0:
-            label_price = MAIN_FONT.render(returned_price, 1, (0, 0, 0))
+        WIN.blit(label_return, (WIDTH_H - (label_return.get_width() // 2), 395))
+
+        if result != 0.0:
+            label_price = MAIN_FONT.render(result, 1, (0, 0, 0))
             WIN.blit(
                 label_price,
-                (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 350),
+                (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 65),
             )
 
         # Zistovanie, ci nebolo kliknute na textove pole
@@ -74,7 +71,15 @@ def stocks_app():
             if B_STOCK_INPUT.collidepoint(pos_x, pos_y):
                 active = stock_input
             elif B_GET_PRICE.collidepoint(pos_x, pos_y):
-                returned_price = get_price(stock_input.get_text().strip())
+                result = get_price(stock_input.get_text().strip())
+                if result < 0:
+                    if result == -1:
+                        result = "Unknown symbol"
+                    elif result == -2:
+                        result = "Empty string"
+                else:
+                    result = str(result) + " $"
+
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
             else:
@@ -89,4 +94,3 @@ def stocks_app():
 
         pygame.display.update()
         clock.tick(FPS)
-
