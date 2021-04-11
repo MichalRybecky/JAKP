@@ -22,6 +22,7 @@ pygame.display.set_icon(ICON)
 def main():
     run = True
     click = False
+    exit_cooldown = 0
     clock = pygame.time.Clock()
 
     # BUTTONS INITIALIZATION
@@ -50,7 +51,6 @@ def main():
         WIN.blit(CALCUL, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30))
         WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
         WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
-    
         WIN.blit(X, (10, 10))
         WIN.blit(MENU, (WIDTH - 60 - 10, 10))
 
@@ -81,13 +81,13 @@ def main():
             elif B_CALCUL.collidepoint(pos_x, pos_y):
                 print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
-                print("MENY")
                 meny_app()
+                exit_cooldown = FPS // 2
             elif B_STOCKS.collidepoint(pos_x, pos_y):
                 print("STOCKS")
             elif B_MENU.collidepoint(pos_x, pos_y):
                 print("MENU")    
-            elif B_X.collidepoint(pos_x, pos_y):
+            elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
                 run = False    
 
         for event in pygame.event.get():
@@ -101,6 +101,10 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
                     click = False
+
+        # exit_cooldown preventuje exit po double clicku na back button z jednotlivych appiek
+        if exit_cooldown > 0: 
+            exit_cooldown -= 1
 
         clock.tick(FPS)
         pygame.display.update()
