@@ -11,6 +11,7 @@ from settings import *
 from utils.load_assets import *
 from apps.kebab import kebab_app
 from apps.meny import meny_app
+from apps.stocks import stocks_app
 
 
 # PyGame setup
@@ -84,7 +85,8 @@ def main():
                 meny_app()
                 exit_cooldown = FPS // 2
             elif B_STOCKS.collidepoint(pos_x, pos_y):
-                print("STOCKS")
+                stocks_app()
+                exit_cooldown = FPS // 2
             elif B_MENU.collidepoint(pos_x, pos_y):
                 print("MENU")    
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
