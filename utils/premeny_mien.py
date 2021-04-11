@@ -15,10 +15,3 @@ def from_xyz(mena, hodnota):
     vysledok = round(hodnota / kurzy[mena], 2)
     return vysledok
 
-
-print(from_eur("thb", 21))
-print(from_xyz("hkd", 21))
-
-
-
-
