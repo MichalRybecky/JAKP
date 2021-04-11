@@ -1,4 +1,5 @@
 import http.client
+import json
 
 def get_price(symbol):
     "Returns JSON formatted price of a stock. Takes the stock symbol as a parameter."
@@ -6,4 +7,4 @@ def get_price(symbol):
     conn.request("GET", "/1.0/tops/last?symbols="+symbol)
     res = conn.getresponse()
     data = res.read()
-    return data.decode("utf-8")
+    return json.loads(data)[0]["price"]
