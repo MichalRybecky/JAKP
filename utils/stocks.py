@@ -4,7 +4,7 @@ import json
 def get_price(symbol):
     "Returns JSON formatted price of a stock. Takes the stock symbol as a parameter."
     if not symbol:
-        return "Unknown symbol"
+        return -2
     conn = http.client.HTTPSConnection("api.iextrading.com")
     conn.request("GET", "/1.0/tops/last?symbols="+symbol)
     res = conn.getresponse()
@@ -12,4 +12,4 @@ def get_price(symbol):
     try:
         return json.loads(data)[0]["price"]
     except IndexError:
-        return "Unknown symbol"
+        return -1
