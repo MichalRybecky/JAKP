@@ -22,6 +22,7 @@ pygame.display.set_icon(ICON)
 def main():
     run = True
     click = False
+    clock = pygame.time.Clock()
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -89,7 +90,6 @@ def main():
             elif B_X.collidepoint(pos_x, pos_y):
                 run = False    
 
-        pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -101,6 +101,9 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
                     click = False
+
+        clock.tick(FPS)
+        pygame.display.update()
 
     pygame.quit()
 
