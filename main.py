@@ -9,8 +9,8 @@ import pygame
 
 from settings import *
 from utils.load_assets import *
-from utils.kebab import kebab_app
-from utils.meny import meny_app
+from apps.kebab import kebab_app
+from apps.meny import meny_app
 
 
 # PyGame setup
