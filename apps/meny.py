@@ -1,8 +1,10 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG, MAIN_FONT, BIG_FONT, BACK, MENU
+from utils.load_assets import BG_MENY, MAIN_FONT, BIG_FONT, BACK, MENU
 from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+
+from utils.premeny_mien import from_eur, from_xyz
 
 
 def meny_app():
@@ -12,29 +14,39 @@ def meny_app():
     run = True
     click = False
     clock = pygame.time.Clock()
-    cur_amount = pygame_textinput.TextInput(initial_string="1")
-    cur_from = pygame_textinput.TextInput(initial_string="EUR")
-    cur_to = pygame_textinput.TextInput(initial_string="USD")
+    cur_amount = pygame_textinput.TextInput(
+        initial_string="1", font_family="pixel_font.ttf", font_size=20,
+    )
+    cur_from = pygame_textinput.TextInput(
+        initial_string="EUR", font_family="pixel_font.ttf", font_size=16
+    )
+    cur_to = pygame_textinput.TextInput(
+        initial_string="USD", font_family="pixel_font.ttf", font_size=16
+    )
+    cur_result = pygame_textinput.TextInput(font_family="pixel_font.ttf", font_size=20)
     events = pygame.event.get()
     cur_amount.update(events)
     cur_from.update(events)
     cur_to.update(events)
+    result = 0.0
     active = None
+    switch_cooldown = 0
 
     # BUTTON INITIALIZATION
-    B_CUR_AMOUNT = pygame.Rect(WIDTH_H - 150, HEIGHT_H + 150, 300, 40)
-    B_CONVERT = pygame.Rect(WIDTH_H - 100, HEIGHT_H + 200, 200, 60)
-    B_RESULT = pygame.Rect(WIDTH_H - 150, HEIGHT_H + 325, 300, 40)
-    B_FROM = pygame.Rect(50, HEIGHT_H - 200, 80, 40)
-    B_TO = pygame.Rect(WIDTH - 130, HEIGHT_H - 200, 80, 40)
-    B_BACK = pygame.Rect(10, 10, 60, 60)
-    B_MENU = pygame.Rect(WIDTH - 60 - 10, 10, 60, 60)
+    B_CUR_AMOUNT = pygame.Rect(45, 250, 250, 100)
+    B_CONVERT = pygame.Rect(45, 500, 250, 80)
+    B_RESULT = pygame.Rect(45, 375, 250, 100)
+    B_FROM = pygame.Rect(WIDTH - 175, 250, 125, 95)
+    B_TO = pygame.Rect(WIDTH - 175, 375, 125, 95)
+    B_BACK = pygame.Rect(20, 20, 60, 60)
+    B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
+    B_SWITCH = pygame.Rect(WIDTH - 175, 500, 125, 95)
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        WIN.blit(BG, (0, 0))
-        WIN.blit(BACK, (10, 10))
-        WIN.blit(MENU, (WIDTH - 60 - 10, 10))
+        WIN.blit(BG_MENY, (0, 0))
+        WIN.blit(BACK, (20, 20))
+        WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
         # Event handling
         events = pygame.event.get()
@@ -49,37 +61,19 @@ def meny_app():
                     click = False
 
         # BUTTONS AND COLLIDEPOINTS
-        pygame.draw.rect(WIN, UI_COLOR, B_CUR_AMOUNT)
         WIN.blit(
             cur_amount.get_surface(),
-            (WIDTH_H - len(cur_amount.get_text()) * 6, HEIGHT_H + 160),
+            (175 - len(cur_amount.get_text()) * 12, 275),
         )
-
-        pygame.draw.rect(WIN, UI_COLOR, B_FROM)
-        WIN.blit(cur_from.get_surface(), (70, HEIGHT_H - 190))
-
-        pygame.draw.rect(WIN, UI_COLOR, B_TO)
-        WIN.blit(cur_to.get_surface(), (WIDTH - 120, HEIGHT_H - 190))
-
-        pygame.draw.rect(WIN, UI_COLOR, B_CONVERT)
-        pygame.draw.rect(WIN, UI_COLOR, B_RESULT)
+        WIN.blit(cur_from.get_surface(), (WIDTH - 140, 280))
+        WIN.blit(cur_to.get_surface(), (WIDTH - 140, 405))
 
         # LABELS
-        label_cur_amount = BIG_FONT.render("Penaze", 1, (0, 0, 0))
-        WIN.blit(
-            label_cur_amount,
-            (WIDTH_H - (label_cur_amount.get_width() // 2), HEIGHT_H + 100),
-        )
-        label_convert = MAIN_FONT.render("Konvertovat", 1, (0, 0, 0))
-        WIN.blit(
-            label_convert,
-            (WIDTH_H - (label_convert.get_width() // 2), HEIGHT_H + 215),
-        )
-        label_convert = BIG_FONT.render("Vysledok", 1, (0, 0, 0))
-        WIN.blit(
-            label_convert,
-            (WIDTH_H - (label_convert.get_width() // 2), HEIGHT_H + 275),
-        )
+        label_konvertuj = BIG_FONT.render("Konvertuj", 1, (0, 0, 0))
+        WIN.blit(label_konvertuj, (80, HEIGHT_H + 75))
+        if result != 0.0:
+            label_result = BIG_FONT.render(str(result), 1, (0, 0, 0))
+            WIN.blit(label_result, (200 - len(str(result)) * 12, 400))
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
@@ -91,6 +85,26 @@ def meny_app():
                 active = cur_to
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
+            elif B_CONVERT.collidepoint(pos_x, pos_y):
+                if cur_from.get_text().lower() == "eur":
+                    result = from_eur(
+                        cur_to.get_text().lower(), int(cur_amount.get_text())
+                    )
+                else:
+                    result = from_xyz(
+                        cur_from.get_text().lower(), int(cur_amount.get_text())
+                    )
+            elif B_SWITCH.collidepoint(pos_x, pos_y) and switch_cooldown == 0:
+                switch_1, switch_2 = cur_from.get_text(), cur_to.get_text()
+                cur_from = pygame_textinput.TextInput(
+                    initial_string=switch_2, font_family="pixel_font.ttf", font_size=16
+                )
+                cur_to = pygame_textinput.TextInput(
+                    initial_string=switch_1, font_family="pixel_font.ttf", font_size=16
+                )
+                cur_from.update(events)
+                cur_to.update(events)
+                switch_cooldown = FPS // 3
             else:
                 active = None
 
@@ -101,6 +115,7 @@ def meny_app():
         except AttributeError:
             pass
 
+        if switch_cooldown != 0:
+            switch_cooldown -= 1
         pygame.display.update()
         clock.tick(FPS)
-
