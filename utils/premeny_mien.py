@@ -15,3 +15,5 @@ def from_xyz(mena, hodnota):
     vysledok = round(hodnota / kurzy[mena], 2)
     return vysledok
 
+
+

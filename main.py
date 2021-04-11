@@ -35,8 +35,8 @@ def main():
     B_CALCUL = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
     B_MENY = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
     B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
-    B_X = pygame.Rect(10, 10, 60, 60)
-    B_MENU = pygame.Rect(WIDTH - 60 - 10, 10, 60, 60)
+    B_X = pygame.Rect(20, 20, 60, 60)
+    B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
 
     # main app loop
     while run:
@@ -52,8 +52,8 @@ def main():
         WIN.blit(CALCUL, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30))
         WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
         WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
-        WIN.blit(X, (10, 10))
-        WIN.blit(MENU, (WIDTH - 60 - 10, 10))
+        WIN.blit(X, (20, 20))
+        WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
         # LABELS
         # label_kebab = main_font.render("Kebab", 1, (10, 10, 10))
