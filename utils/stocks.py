@@ -7,4 +7,7 @@ def get_price(symbol):
     conn.request("GET", "/1.0/tops/last?symbols="+symbol)
     res = conn.getresponse()
     data = res.read()
-    return json.loads(data)[0]["price"]
+    try:
+        return json.loads(data)[0]["price"]
+    except IndexError:
+        return "Unknown symbol."
