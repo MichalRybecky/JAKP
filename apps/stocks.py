@@ -15,7 +15,11 @@ def stocks_app():
     click = False
     clock = pygame.time.Clock()
     stock_input = pygame_textinput.TextInput(
-        initial_string="GME", font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,
+        initial_string="GME",
+        font_family="pixel_font.ttf",
+        font_size=20,
+        text_color=FONT_COLOR,
+        cursor_color=FONT_COLOR,
     )
     events = pygame.event.get()
     stock_input.update(events)

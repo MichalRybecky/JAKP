@@ -9,15 +9,6 @@ from utils.premeny_mien import from_eur, from_xyz
 import http.client
 import xml.etree.ElementTree as ET
 
-conn = http.client.HTTPSConnection("www.ecb.europa.eu")
-conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
-res = conn.getresponse()
-data = res.read()
-root = ET.fromstring(data)
-rates = {}
-for i in root[2][0]:
-    entry = i.attrib
-    rates.update({entry['currency']: float(entry['rate'])})
 
 def meny_app():
     """
@@ -27,15 +18,32 @@ def meny_app():
     click = False
     clock = pygame.time.Clock()
     cur_amount = pygame_textinput.TextInput(
-        initial_string="1", font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,
+        initial_string="1",
+        font_family="pixel_font.ttf",
+        font_size=20,
+        text_color=FONT_COLOR,
+        cursor_color=FONT_COLOR,
     )
     cur_from = pygame_textinput.TextInput(
-        initial_string="EUR", font_family="pixel_font.ttf", font_size=16, text_color=FONT_COLOR,
+        initial_string="EUR",
+        font_family="pixel_font.ttf",
+        font_size=16,
+        text_color=FONT_COLOR,
+        cursor_color=FONT_COLOR,
     )
     cur_to = pygame_textinput.TextInput(
-        initial_string="USD", font_family="pixel_font.ttf", font_size=16, text_color=FONT_COLOR,
+        initial_string="USD",
+        font_family="pixel_font.ttf",
+        font_size=16,
+        text_color=FONT_COLOR,
+        cursor_color=FONT_COLOR,
     )
-    cur_result = pygame_textinput.TextInput(font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,)
+    cur_result = pygame_textinput.TextInput(
+        font_family="pixel_font.ttf",
+        font_size=20,
+        text_color=FONT_COLOR,
+        cursor_color=FONT_COLOR,
+    )
     events = pygame.event.get()
     cur_amount.update(events)
     cur_from.update(events)
@@ -53,6 +61,16 @@ def meny_app():
     B_BACK = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
     B_SWITCH = pygame.Rect(WIDTH - 175, 500, 125, 95)
+
+    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
+    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
+    res = conn.getresponse()
+    data = res.read()
+    root = ET.fromstring(data)
+    rates = {}
+    for i in root[2][0]:
+        entry = i.attrib
+        rates.update({entry["currency"]: float(entry["rate"])})
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
