@@ -23,6 +23,7 @@ def meny_app():
         font_size=20,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
+        max_string_length=3
     )
     cur_from = pygame_textinput.TextInput(
         initial_string="EUR",
@@ -127,10 +128,18 @@ def meny_app():
             elif B_SWITCH.collidepoint(pos_x, pos_y) and switch_cooldown == 0:
                 switch_1, switch_2 = cur_from.get_text(), cur_to.get_text()
                 cur_from = pygame_textinput.TextInput(
-                    initial_string=switch_2, font_family="pixel_font.ttf", font_size=16
+                    initial_string=switch_2,
+                    font_family="pixel_font.ttf",
+                    font_size=16,
+                    text_color=FONT_COLOR,
+                    cursor_color=FONT_COLOR,
                 )
                 cur_to = pygame_textinput.TextInput(
-                    initial_string=switch_1, font_family="pixel_font.ttf", font_size=16
+                    initial_string=switch_1,
+                    font_family="pixel_font.ttf",
+                    font_size=16,
+                    text_color=FONT_COLOR,
+                    cursor_color=FONT_COLOR,
                 )
                 cur_from.update(events)
                 cur_to.update(events)
