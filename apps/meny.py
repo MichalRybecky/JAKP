@@ -1,8 +1,8 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_MENY, MAIN_FONT, BIG_FONT, BACK, MENU
-from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from utils.load_assets import BG_MENY, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR
+from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 
 from utils.premeny_mien import from_eur, from_xyz
 
@@ -15,15 +15,15 @@ def meny_app():
     click = False
     clock = pygame.time.Clock()
     cur_amount = pygame_textinput.TextInput(
-        initial_string="1", font_family="pixel_font.ttf", font_size=20,
+        initial_string="1", font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,
     )
     cur_from = pygame_textinput.TextInput(
-        initial_string="EUR", font_family="pixel_font.ttf", font_size=16
+        initial_string="EUR", font_family="pixel_font.ttf", font_size=16, text_color=FONT_COLOR,
     )
     cur_to = pygame_textinput.TextInput(
-        initial_string="USD", font_family="pixel_font.ttf", font_size=16
+        initial_string="USD", font_family="pixel_font.ttf", font_size=16, text_color=FONT_COLOR,
     )
-    cur_result = pygame_textinput.TextInput(font_family="pixel_font.ttf", font_size=20)
+    cur_result = pygame_textinput.TextInput(font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,)
     events = pygame.event.get()
     cur_amount.update(events)
     cur_from.update(events)
@@ -69,10 +69,10 @@ def meny_app():
         WIN.blit(cur_to.get_surface(), (WIDTH - 140, 405))
 
         # LABELS
-        label_konvertuj = BIG_FONT.render("Konvertuj", 1, (0, 0, 0))
-        WIN.blit(label_konvertuj, (80, HEIGHT_H + 75))
+        label_konvertuj = BIG_FONT.render("Konvertuj", 1, FONT_COLOR)
+        WIN.blit(label_konvertuj, (80, HEIGHT_H + 70))
         if result != 0.0:
-            label_result = BIG_FONT.render(str(result), 1, (0, 0, 0))
+            label_result = BIG_FONT.render(str(result), 1, FONT_COLOR)
             WIN.blit(label_result, (200 - len(str(result)) * 12, 400))
 
         # Zistovanie, ci nebolo kliknute na textove pole

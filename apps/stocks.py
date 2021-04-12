@@ -1,7 +1,7 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_STOCKS, MAIN_FONT, BIG_FONT, BACK, MENU
+from utils.load_assets import BG_STOCKS, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR
 from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 
 from utils.stocks import get_price
@@ -15,7 +15,7 @@ def stocks_app():
     click = False
     clock = pygame.time.Clock()
     stock_input = pygame_textinput.TextInput(
-        initial_string="GME", font_family="pixel_font.ttf", font_size=20
+        initial_string="GME", font_family="pixel_font.ttf", font_size=20, text_color=FONT_COLOR,
     )
     events = pygame.event.get()
     stock_input.update(events)
@@ -30,7 +30,7 @@ def stocks_app():
     B_MENU = pygame.Rect(WIDTH - 65 - 20, 20, 60, 60)
 
     # LABELS
-    label_return = BIG_FONT.render("Return", 1, (0, 0, 0))
+    label_return = BIG_FONT.render("Return", 1, FONT_COLOR)
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
@@ -60,7 +60,7 @@ def stocks_app():
         WIN.blit(label_return, (WIDTH_H - (label_return.get_width() // 2), 395))
 
         if result != 0.0:
-            label_price = MAIN_FONT.render(result, 1, (0, 0, 0))
+            label_price = MAIN_FONT.render(result, 1, FONT_COLOR)
             WIN.blit(
                 label_price,
                 (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 65),

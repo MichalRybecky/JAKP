@@ -9,6 +9,7 @@ import pygame
 
 from settings import *
 from utils.load_assets import *
+from utils.load_user_settings import return_user_settings
 from apps.kebab import kebab_app
 from apps.meny import meny_app
 from apps.stocks import stocks_app
