@@ -2,7 +2,7 @@ import http.client
 import json
 
 def get_price(symbol):
-    "Returns JSON formatted price of a stock. Takes the stock symbol as a parameter."
+    "Returns float price of a stock. Takes the stock symbol as a parameter."
     if not symbol:
         return -2
     conn = http.client.HTTPSConnection("api.iextrading.com")
