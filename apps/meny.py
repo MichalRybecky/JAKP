@@ -6,6 +6,18 @@ from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 
 from utils.premeny_mien import from_eur, from_xyz
 
+import http.client
+import xml.etree.ElementTree as ET
+
+conn = http.client.HTTPSConnection("www.ecb.europa.eu")
+conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
+res = conn.getresponse()
+data = res.read()
+root = ET.fromstring(data)
+rates = {}
+for i in root[2][0]:
+    entry = i.attrib
+    rates.update({entry['currency']: float(entry['rate'])})
 
 def meny_app():
     """
@@ -88,11 +100,11 @@ def meny_app():
             elif B_CONVERT.collidepoint(pos_x, pos_y):
                 if cur_from.get_text().lower() == "eur":
                     result = from_eur(
-                        cur_to.get_text().lower(), int(cur_amount.get_text())
+                        rates[cur_to.get_text().upper()], int(cur_amount.get_text())
                     )
                 else:
                     result = from_xyz(
-                        cur_from.get_text().lower(), int(cur_amount.get_text())
+                        rates[cur_from.get_text().upper()], int(cur_amount.get_text())
                     )
             elif B_SWITCH.collidepoint(pos_x, pos_y) and switch_cooldown == 0:
                 switch_1, switch_2 = cur_from.get_text(), cur_to.get_text()
