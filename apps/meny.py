@@ -23,7 +23,7 @@ def meny_app():
         font_size=20,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
-        max_string_length=3
+        max_string_length=7,
     )
     cur_from = pygame_textinput.TextInput(
         initial_string="EUR",
@@ -31,6 +31,7 @@ def meny_app():
         font_size=16,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
+        max_string_length=3,
     )
     cur_to = pygame_textinput.TextInput(
         initial_string="USD",
@@ -38,6 +39,7 @@ def meny_app():
         font_size=16,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
+        max_string_length=3,
     )
     cur_result = pygame_textinput.TextInput(
         font_family="pixel_font.ttf",
@@ -149,7 +151,7 @@ def meny_app():
 
         # Setnutie aktivneho textoveho pola, pokial nejake je
         try:
-            # TODO Limit znakov
+            # TODO iba platne znaky sa budu dat pisat
             active.update(events)
         except AttributeError:
             pass
