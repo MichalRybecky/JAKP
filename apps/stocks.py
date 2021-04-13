@@ -20,6 +20,7 @@ def stocks_app():
         font_size=20,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
+        max_string_length=5
     )
     events = pygame.event.get()
     stock_input.update(events)
