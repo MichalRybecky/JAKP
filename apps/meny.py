@@ -151,7 +151,6 @@ def meny_app():
 
         # Setnutie aktivneho textoveho pola, pokial nejake je
         try:
-            # TODO iba platne znaky sa budu dat pisat
             active.update(events)
         except AttributeError:
             pass
