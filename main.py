@@ -9,6 +9,7 @@ import pygame
 
 from settings import *
 from utils.load_assets import *
+from utils.connectivity import internet as connection_check
 from utils.load_user_settings import return_user_settings
 from apps.kebab import kebab_app
 from apps.meny import meny_app
@@ -26,6 +27,14 @@ def main():
     click = False
     exit_cooldown = 0
     clock = pygame.time.Clock()
+
+    WIN.blit(BG_LOADING, (0, 0))
+    pygame.display.update()
+
+    internet = connection_check()
+    #if not internet:
+    #    MENY = MENY_M
+    #    STOCKS = STOCKS_M
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -56,22 +65,10 @@ def main():
         WIN.blit(X, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
-        # LABELS
-        # label_kebab = main_font.render("Kebab", 1, (10, 10, 10))
-        # WIN.blit(
-        #    label_kebab,
-        #    (
-        #        (WIDTH_H - (label_kebab.get_width() // 2)) // 2 + 20,
-        #        (HEIGHT_H // 3) + ICON_SIZE,
-        #    ),
-        # )
-
         # Button Activations
         if click:
-            print(f"si klikol: {pos_x}, {pos_y}")
             if B_KEBAB.collidepoint(pos_x, pos_y):
                 print("KEBAB")
-                kebab_app()
             elif B_A_SORT.collidepoint(pos_x, pos_y):
                 print("A_SORT")
             elif B_CASE.collidepoint(pos_x, pos_y):
@@ -84,10 +81,10 @@ def main():
                 print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
                 meny_app()
-                exit_cooldown = FPS // 2
+                exit_cooldown = FPS // 3
             elif B_STOCKS.collidepoint(pos_x, pos_y):
                 stocks_app()
-                exit_cooldown = FPS // 2
+                exit_cooldown = FPS // 3
             elif B_MENU.collidepoint(pos_x, pos_y):
                 print("MENU")    
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
