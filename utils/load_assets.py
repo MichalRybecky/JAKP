@@ -45,6 +45,8 @@ BACK = pygame.transform.scale(BACK, (65, 65))
 X = pygame.image.load(os.path.join("assets", "x.png"))
 X = pygame.transform.scale(X, (65, 65))
 ICON = pygame.image.load(os.path.join("assets", "logo-stvorec.png"))
+BUTTON = pygame.image.load(os.path.join("assets", "reconnect.png"))
+BUTTON = pygame.transform.scale(BUTTON, (160, 50))
 
 KEBAB = pygame.image.load(os.path.join("assets", "kebab_101.png"))
 KEBAB = pygame.transform.scale(KEBAB, (ICON_SIZE, ICON_SIZE))
