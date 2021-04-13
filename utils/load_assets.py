@@ -14,7 +14,7 @@ pygame.init()
 
 user_settings = return_user_settings()
 if user_settings["theme"] == "light": 
-    BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-1.png"))
+    BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-l.png"))
     BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-w.png"))
     BG = pygame.transform.scale(BG, (500, 900))
