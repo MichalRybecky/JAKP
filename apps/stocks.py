@@ -7,6 +7,18 @@ from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 from utils.stocks import get_price
 
 
+def return_price(ticker):
+    result = get_price(ticker)
+    if result < 0:
+        if result == -1:
+            result = "Unknown symbol"
+        elif result == -2:
+            result = "Empty string"
+    else:
+        result = str(result) + " $"
+    return result
+
+
 def stocks_app():
     """
     GUI pre Stocks
@@ -43,18 +55,6 @@ def stocks_app():
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
-        # Event handling
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click = True
-            if event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    click = False
-
         # BUTTONS AND COLLIDEPOINTS
         WIN.blit(
             stock_input.get_surface(),
@@ -76,15 +76,7 @@ def stocks_app():
             if B_STOCK_INPUT.collidepoint(pos_x, pos_y):
                 active = stock_input
             elif B_GET_PRICE.collidepoint(pos_x, pos_y):
-                result = get_price(stock_input.get_text().strip())
-                if result < 0:
-                    if result == -1:
-                        result = "Unknown symbol"
-                    elif result == -2:
-                        result = "Empty string"
-                else:
-                    result = str(result) + " $"
-
+                result = return_price(stock_input.get_text().strip())
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
             else:
@@ -95,6 +87,22 @@ def stocks_app():
             active.update(events)
         except AttributeError:
             pass
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RETURN]:
+            result = return_price(stock_input.get_text().strip())
+
+        # Event handling
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    click = False
 
         pygame.display.update()
         clock.tick(FPS)
