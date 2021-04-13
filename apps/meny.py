@@ -10,6 +10,18 @@ import http.client
 import xml.etree.ElementTree as ET
 
 
+def convert(rates, cur_amount, cur_from, cur_to):
+    if cur_from.get_text().lower() == "eur":
+        result = from_eur(
+            rates[cur_to.get_text().upper()], int(cur_amount.get_text())
+        )
+    else:
+        result = from_xyz(
+            rates[cur_from.get_text().upper()], int(cur_amount.get_text())
+        )
+    return result
+
+
 def meny_app():
     """
     GUI pre Premenu mien
@@ -119,14 +131,7 @@ def meny_app():
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
             elif B_CONVERT.collidepoint(pos_x, pos_y):
-                if cur_from.get_text().lower() == "eur":
-                    result = from_eur(
-                        rates[cur_to.get_text().upper()], int(cur_amount.get_text())
-                    )
-                else:
-                    result = from_xyz(
-                        rates[cur_from.get_text().upper()], int(cur_amount.get_text())
-                    )
+                result = convert(rates, cur_amount, cur_from, cur_to)
             elif B_SWITCH.collidepoint(pos_x, pos_y) and switch_cooldown == 0:
                 switch_1, switch_2 = cur_from.get_text(), cur_to.get_text()
                 cur_from = pygame_textinput.TextInput(
@@ -154,6 +159,10 @@ def meny_app():
             active.update(events)
         except AttributeError:
             pass
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RETURN]:
+            result = convert(rates, cur_amount, cur_from, cur_to)
 
         if switch_cooldown != 0:
             switch_cooldown -= 1
