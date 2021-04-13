@@ -100,8 +100,8 @@ def meny_app():
         WIN.blit(cur_to.get_surface(), (WIDTH - 140, 405))
 
         # LABELS
-        label_konvertuj = BIG_FONT.render("Konvertuj", 1, FONT_COLOR)
-        WIN.blit(label_konvertuj, (80, HEIGHT_H + 70))
+        label_konvertuj = BIG_FONT.render("Convert", 1, FONT_COLOR)
+        WIN.blit(label_konvertuj, (100, HEIGHT_H + 70))
         if result != 0.0:
             label_result = BIG_FONT.render(str(result), 1, FONT_COLOR)
             WIN.blit(label_result, (200 - len(str(result)) * 12, 400))
