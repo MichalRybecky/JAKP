@@ -22,6 +22,14 @@ pygame.display.set_caption("JAKP")
 pygame.display.set_icon(ICON)
 
 
+def connect() -> bool:
+    """
+    Vracia boolean, ci je uzivatel pripojeny na internet
+    """
+    print("Connecting...")
+    return connection_check()
+
+
 def main():
     run = True
     click = False
@@ -32,7 +40,11 @@ def main():
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
 
-    internet = connection_check()
+    internet = connect()
+    if internet:
+        print("Connection established")
+    else:
+        print("Connection failed")
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -45,14 +57,19 @@ def main():
     B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
     B_X = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
+    if not internet:
+        B_RECONNECT = pygame.Rect(WIDTH_H - 80, 30, 160, 50)
+        label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
+        label_reconnect = MAIN_FONT.render("Reconnect", 1, FONT_COLOR)
 
-    # LABELS
-    label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
 
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         WIN.blit(BG, (0, 0))
+        if not internet:
+            WIN.blit(BUTTON, (WIDTH_H - 80, 30))
+            WIN.blit(label_reconnect, (WIDTH_H - 60, 40))
 
         # BLITING ICONS
         WIN.blit(KEBAB, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3))
@@ -102,6 +119,9 @@ def main():
                 print("MENU")    
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
                 run = False    
+            if not internet:
+                if B_RECONNECT.collidepoint(pos_x, pos_y):
+                    internet = connect()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
