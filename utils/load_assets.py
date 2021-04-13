@@ -9,10 +9,13 @@ import pygame
 from utils.load_user_settings import return_user_settings
 from settings import WIDTH, HEIGHT, ICON_SIZE, ICON_SIZE_H
 
+
 pygame.init()
 
 user_settings = return_user_settings()
 if user_settings["theme"] == "light": 
+    BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-1.png"))
+    BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-w.png"))
     BG = pygame.transform.scale(BG, (500, 900))
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien.png"))
@@ -21,6 +24,8 @@ if user_settings["theme"] == "light":
     BG_STOCKS = pygame.transform.scale(BG_STOCKS, (500, 900))
     FONT_COLOR = (10, 10, 10)
 else:
+    BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-d.png"))
+    BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-d.png"))
     BG = pygame.transform.scale(BG, (500, 900))
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien-d.png"))
@@ -49,6 +54,8 @@ CASE = pygame.image.load(os.path.join("assets", "case.png"))
 CASE = pygame.transform.scale(CASE, (ICON_SIZE, ICON_SIZE))
 MENY = pygame.image.load(os.path.join("assets", "meny.png"))
 MENY = pygame.transform.scale(MENY, (ICON_SIZE, ICON_SIZE))
+MENY_M = pygame.image.load(os.path.join("assets", "meny_monochrom.png"))
+MENY_M = pygame.transform.scale(MENY_M, (ICON_SIZE, ICON_SIZE))
 LIFE = pygame.image.load(os.path.join("assets", "life_is_life.png"))
 LIFE = pygame.transform.scale(LIFE, (ICON_SIZE, ICON_SIZE))
 MATHE = pygame.image.load(os.path.join("assets", "cis_sustavy_smol.png"))
@@ -59,5 +66,5 @@ SSDLS = pygame.image.load(os.path.join("assets", "ssdls_logo.jpg"))
 SSDLS = pygame.transform.scale(SSDLS, (ICON_SIZE, ICON_SIZE))
 STOCKS = pygame.image.load(os.path.join("assets", "stocks.png"))
 STOCKS = pygame.transform.scale(STOCKS, (ICON_SIZE, ICON_SIZE))
-
-
+STOCKS_M = pygame.image.load(os.path.join("assets", "stocks_monochrom.png"))
+STOCKS_M = pygame.transform.scale(STOCKS_M, (ICON_SIZE, ICON_SIZE))
