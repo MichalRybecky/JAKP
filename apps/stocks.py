@@ -92,7 +92,6 @@ def stocks_app():
 
         # Setnutie aktivneho textoveho pola, pokial nejake je
         try:
-            # TODO Limit znakov
             active.update(events)
         except AttributeError:
             pass
