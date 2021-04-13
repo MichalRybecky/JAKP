@@ -26,15 +26,13 @@ def main():
     run = True
     click = False
     exit_cooldown = 0
+    no_internet_label_cooldown = 0
     clock = pygame.time.Clock()
 
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
 
     internet = connection_check()
-    #if not internet:
-    #    MENY = MENY_M
-    #    STOCKS = STOCKS_M
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -48,6 +46,9 @@ def main():
     B_X = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
 
+    # LABELS
+    label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
+
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
@@ -60,11 +61,16 @@ def main():
         WIN.blit(LIFE, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE))
         WIN.blit(MATHE, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30))
         WIN.blit(CALCUL, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30))
-        WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
-        WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
         WIN.blit(X, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
+        if internet:
+            WIN.blit(MENY, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
+            WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
+        else:
+            WIN.blit(MENY_M, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
+            WIN.blit(STOCKS_M, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
+            
         # Button Activations
         if click:
             if B_KEBAB.collidepoint(pos_x, pos_y):
@@ -80,11 +86,18 @@ def main():
             elif B_CALCUL.collidepoint(pos_x, pos_y):
                 print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
-                meny_app()
-                exit_cooldown = FPS // 3
+                if internet:
+                    meny_app()
+                    exit_cooldown = FPS // 3
+                else:
+                    no_internet_label_cooldown = 180
             elif B_STOCKS.collidepoint(pos_x, pos_y):
-                stocks_app()
-                exit_cooldown = FPS // 3
+                if internet:
+                    stocks_app()
+                    exit_cooldown = FPS // 3
+                else:
+                    no_internet_label_cooldown = 180
+
             elif B_MENU.collidepoint(pos_x, pos_y):
                 print("MENU")    
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
@@ -105,6 +118,10 @@ def main():
         # exit_cooldown preventuje exit po double clicku na back button z jednotlivych appiek
         if exit_cooldown > 0: 
             exit_cooldown -= 1
+
+        if no_internet_label_cooldown > 0:
+            WIN.blit(label_no_internet, (WIDTH_H - 200, HEIGHT - 80))
+            no_internet_label_cooldown -= 1
 
         clock.tick(FPS)
         pygame.display.update()
