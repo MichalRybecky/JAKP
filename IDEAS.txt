@@ -1,0 +1,6 @@
+JAKP ideas:
+
+- zmena jazyku slovak/english
+- dorobit enter reakciu na ostatne apps
+- dark mode 
+- v settings okrem credits dat take nieco ze recenziu/hviezdicky/zanechaj odkaz tvorcom/nasiel som bug
