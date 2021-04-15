@@ -22,14 +22,6 @@ pygame.display.set_caption("JAKP")
 pygame.display.set_icon(ICON)
 
 
-def connect() -> bool:
-    """
-    Vracia boolean, ci je uzivatel pripojeny na internet
-    """
-    print("Connecting...")
-    return connection_check()
-
-
 def main():
     run = True
     click = False
@@ -40,11 +32,7 @@ def main():
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
 
-    internet = connect()
-    if internet:
-        print("Connection established")
-    else:
-        print("Connection failed")
+    internet = connection_check()
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
