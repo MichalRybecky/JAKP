@@ -109,7 +109,7 @@ def main():
                 run = False    
             if not internet:
                 if B_RECONNECT.collidepoint(pos_x, pos_y):
-                    internet = connect()
+                    internet = connection_check()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
