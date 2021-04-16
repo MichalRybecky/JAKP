@@ -15,6 +15,9 @@ from apps.kebab import kebab_app
 from apps.meny import meny_app
 from apps.stocks import stocks_app
 
+# Meny app importy
+import http.client
+import xml.etree.ElementTree as ET
 
 # PyGame setup
 pygame.init()
@@ -32,7 +35,19 @@ def main():
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
 
+    # Miesto pre robenie connections pre appky ktore to potrebuju
     internet = connection_check()
+
+    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
+    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
+    res = conn.getresponse()
+    data = res.read()
+    root = ET.fromstring(data)
+    rates = {}
+    for i in root[2][0]:
+        entry = i.attrib
+        rates.update({entry["currency"]: float(entry["rate"])})
+
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -75,7 +90,7 @@ def main():
         else:
             WIN.blit(MENY_M, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
             WIN.blit(STOCKS_M, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
-            
+
         # Button Activations
         if click:
             if B_KEBAB.collidepoint(pos_x, pos_y):
@@ -92,7 +107,7 @@ def main():
                 print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
                 if internet:
-                    meny_app()
+                    meny_app(rates)
                     exit_cooldown = FPS // 3
                 else:
                     no_internet_label_cooldown = 180
@@ -104,9 +119,9 @@ def main():
                     no_internet_label_cooldown = 180
 
             elif B_MENU.collidepoint(pos_x, pos_y):
-                print("MENU")    
+                print("MENU")
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
-                run = False    
+                run = False
             if not internet:
                 if B_RECONNECT.collidepoint(pos_x, pos_y):
                     internet = connection_check()
@@ -124,7 +139,7 @@ def main():
                     click = False
 
         # exit_cooldown preventuje exit po double clicku na back button z jednotlivych appiek
-        if exit_cooldown > 0: 
+        if exit_cooldown > 0:
             exit_cooldown -= 1
 
         if no_internet_label_cooldown > 0:

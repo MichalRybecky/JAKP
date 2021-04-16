@@ -6,9 +6,6 @@ from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 
 from utils.premeny_mien import from_eur, from_xyz
 
-import http.client
-import xml.etree.ElementTree as ET
-
 
 def convert(rates, cur_amount, cur_from, cur_to):
     if cur_from.get_text().lower() == "eur":
@@ -22,7 +19,7 @@ def convert(rates, cur_amount, cur_from, cur_to):
     return result
 
 
-def meny_app():
+def meny_app(rates):
     """
     GUI pre Premenu mien
     """
@@ -76,16 +73,6 @@ def meny_app():
     B_BACK = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
     B_SWITCH = pygame.Rect(WIDTH - 175, 500, 125, 95)
-
-    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
-    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
-    res = conn.getresponse()
-    data = res.read()
-    root = ET.fromstring(data)
-    rates = {}
-    for i in root[2][0]:
-        entry = i.attrib
-        rates.update({entry["currency"]: float(entry["rate"])})
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
