@@ -2,3 +2,4 @@ __pycache__/
 *.exe
 test.py
 .vscode/
+user_settings.txt
