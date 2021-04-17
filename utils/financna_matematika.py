@@ -1,4 +1,7 @@
 def uroky(kapital, doba, urok, interval_uroku='y', prispevok=0, interval_prispevku='y', dan=False, vyska_dane=0):
+    """
+    Vracia list integerov, stavov sporiaceho uctu
+    """
     results = []
     urok, dan = urok / 100, dan / 100
     if not dan:
