@@ -36,5 +36,3 @@ def convert_base(input, input_base, output_base):
             remainders.append(str(remainder))
         base_ten_result = base_ten_result // output_base
     return "".join(reversed(remainders))
-    
-print(convert_base('1C4', 16, 2))
