@@ -63,9 +63,13 @@ def kalkulacka_zivota_app():
 
         # LABELS
         if result != {}:
-            display_string = f"{str(int(result['years']))}, {str(int(result['months']))}, {str(int(result['days']))}, {str(int(result['hours']))}, {str(int(result['minutes']))}, {str(int(result['seconds']))}, {str(int(result['miliseconds']))}"
+            if type(result) == str:
+                display_string = result
+            else:
+                display_string = f"{str(int(result['years']))}, {str(int(result['months']))}, {str(int(result['days']))}, {str(int(result['hours']))}, {str(int(result['minutes']))}, {str(int(result['seconds']))}, {str(int(result['miliseconds']))}"
             label_result = SMALL_FONT.render(display_string, 1, FONT_COLOR)
             WIN.blit(label_result, (40, HEIGHT_H + 140))
+            
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
@@ -77,6 +81,7 @@ def kalkulacka_zivota_app():
                 if return_cooldown == 0:
                     return_cooldown = FPS // 6
                     result = kalkulacka_zivota(input_field.get_text().strip())
+
             else:
                 active = None
 
@@ -87,8 +92,9 @@ def kalkulacka_zivota_app():
             pass
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RETURN]:
-            result = convert(rates, cur_amount, cur_from, cur_to)
+        if keys[pygame.K_RETURN] and return_cooldown == 0:
+            return_cooldown = FPS // 6
+            result = kalkulacka_zivota(input_field.get_text().strip())
 
         if return_cooldown != 0:
             return_cooldown -= 1
