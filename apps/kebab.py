@@ -1,6 +1,6 @@
 import pygame
 from settings import WIN
-from utils.load_assets import BG
+from utils.load_assets import BG_kebab
 
 pygame.init()
 
@@ -39,7 +39,7 @@ def kebab_app():
     click = False
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        WIN.blit(BG, (0, 0))
+        WIN.blit(BG_kebab, (0, 0))
         ### Kod pod tento kome
 
         # nadpis ze kebab kalkulacka
@@ -54,10 +54,10 @@ def kebab_app():
         k_placka = kebab.render("Placka", True, (0, 0, 0))
         WIN.blit(k_placka, (350, 200))
         # collide points
-        kz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 250, 25, 25), 2)
-        kz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 250, 25, 25), 2)
-        kp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 250, 25, 25), 2)
-        kp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 250, 25, 25), 2)
+        kz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 250, 25, 25), 2)
+        kz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 250, 25, 25), 2)
+        kp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 250, 25, 25), 2)
+        kp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 250, 25, 25), 2)
 
         # telaci kebab part
         telaci_kebab = kebab.render("Telaci Kebab", True, (0, 0, 0))
@@ -67,10 +67,10 @@ def kebab_app():
         t_placka = kebab.render("Placka", True, (0, 0, 0))
         WIN.blit(t_placka, (350, 450))
         # collide points
-        tz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 500, 25, 25), 2)
-        tz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 500, 25, 25), 2)
-        tp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 500, 25, 25), 2)
-        tp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 500, 25, 25), 2)
+        tz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 500, 25, 25), 2)
+        tz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 500, 25, 25), 2)
+        tp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 500, 25, 25), 2)
+        tp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 500, 25, 25), 2)
 
         # pocty kebabov
         pocet_kz = kebab.render("" + str(kz), True, (0, 0, 0))
