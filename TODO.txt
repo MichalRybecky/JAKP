@@ -19,7 +19,7 @@ Funkcionalita:
 
 	Kalkulacka zivota
 
-	Prevodnik mien
+	Prevodnik mien - hotovo
 
 	Current stock price - Mikenek
 
