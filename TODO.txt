@@ -19,18 +19,7 @@ Funkcionalita:
 
 	Kalkulacka zivota
 
-	Prevodnik mien - hotovo
-
-	Current stock price - Mikenek
-
 	Otvaranie SSDLS loot boxov (ked sa budu buduce generacie nudit)
 		- tocenie
 		- zapis vytocenych veci to CSV suboru
 		- precitanie vytocenych veci a zobrazenie inventaru
-
-GUI:
-	Navrat do menu ikonka
-
-	(hamburger) menu ikonka na About, Settings... menu
-
-	X ikonka na odidenie z appky
