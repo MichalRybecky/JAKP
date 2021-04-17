@@ -8,16 +8,6 @@ pygame.init()
 kebab_kalkulacka = pygame.font.Font("freesansbold.ttf", 40)
 kebab = pygame.font.Font("freesansbold.ttf", 25)
 
-# kebaby
-kz = 0
-kp = 0
-tz = 0
-tp = 0
-
-cooldown = 0
-FPS = 60
-clock = pygame.time.Clock()
-
 
 # vypisanie uctu
 def vypisanie_uctu(kz, kp, tz, tp):
@@ -41,6 +31,8 @@ def kebab_app():
     cooldown = 0
     FPS = 60
     clock = pygame.time.Clock()
+
+    B_BACK = pygame.Rect(20, 20, 60, 60)
 
     # pravdy a klamstva
     run = True
@@ -150,6 +142,8 @@ def kebab_app():
                 else:
                     tp -= 1
                     cooldown = FPS // 3
+            elif B_BACK.collidepoint(pos_x, pos_y):
+                run = False
 
         vypisanie_uctu(kz, kp, tz, tp)
 
