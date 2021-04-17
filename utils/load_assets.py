@@ -18,6 +18,8 @@ if user_settings["theme"] == "light":
     BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-w.png"))
     BG = pygame.transform.scale(BG, (500, 900))
+    BG_kebab = pygame.image.load(os.path.join("assets", "kebab-l.png"))
+    BG_kebab = pygame.transform.scale(BG_kebab, (500, 900))
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien.png"))
     BG_MENY = pygame.transform.scale(BG_MENY, (500, 900))
     BG_STOCKS = pygame.image.load(os.path.join("assets", "stock_market.png"))
