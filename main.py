@@ -14,6 +14,8 @@ from utils.load_user_settings import return_user_settings
 from apps.meny import meny_app
 from apps.stocks import stocks_app
 from apps.kalkulacka_zivota import kalkulacka_zivota_app
+from apps.kebab import kebab_app
+from apps.kebab import vypisanie_uctu
 
 # Meny app importy
 import http.client
@@ -48,7 +50,6 @@ def main():
         entry = i.attrib
         rates.update({entry["currency"]: float(entry["rate"])})
 
-
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
     B_A_SORT = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -64,7 +65,6 @@ def main():
         B_RECONNECT = pygame.Rect(WIDTH_H - 80, 30, 160, 50)
         label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
         label_reconnect = MAIN_FONT.render("Reconnect", 1, FONT_COLOR)
-
 
     # main app loop
     while run:
@@ -94,7 +94,8 @@ def main():
         # Button Activations
         if click:
             if B_KEBAB.collidepoint(pos_x, pos_y):
-                print("KEBAB")
+                kebab_app()
+                exit_cooldown = FPS // 3
             elif B_A_SORT.collidepoint(pos_x, pos_y):
                 print("A_SORT")
             elif B_CASE.collidepoint(pos_x, pos_y):
