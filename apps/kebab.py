@@ -1,6 +1,6 @@
 import pygame
 from settings import WIN
-from utils.load_assets import BG_kebab
+from utils.load_assets import BG_kebab, BACK
 
 pygame.init()
 
@@ -14,7 +14,7 @@ def vypisanie_uctu(kz, kp, tz, tp):
     penaze = kz * 3.8 + kp * 4.1 + tz * 4.1 + tp * 4.5
     round_penaze = round(penaze, 2)
     penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, (0, 0, 0))
-    WIN.blit(penaze_na_obrazovke, (200, 700))
+    WIN.blit(penaze_na_obrazovke, (220, 780))
 
 
 def kebab_app():
@@ -40,51 +40,47 @@ def kebab_app():
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         WIN.blit(BG_kebab, (0, 0))
-        ### Kod pod tento kome
-
-        # nadpis ze kebab kalkulacka
-        headline = kebab_kalkulacka.render("Kebab Kalkulacka", True, (0, 0, 0))
-        WIN.blit(headline, (75, 40))
+        WIN.blit(BACK, (20, 20))
 
         # kuraci kebab part
-        kuraci_kebab = kebab.render("Kuraci Kebab", True, (0, 0, 0))
-        WIN.blit(kuraci_kebab, (150, 150))
-        k_zemla = kebab.render("Zemla", True, (0, 0, 0))
-        WIN.blit(k_zemla, (50, 200))
-        k_placka = kebab.render("Placka", True, (0, 0, 0))
-        WIN.blit(k_placka, (350, 200))
+        kuraci_kebab = kebab.render("Kuraci Kebab", True, (255, 255, 255))
+        WIN.blit(kuraci_kebab, (170, 85))
+        k_zemla = kebab.render("Zemla", True, (255, 255, 255))
+        WIN.blit(k_zemla, (100, 180))
+        k_placka = kebab.render("Placka", True, (255, 255, 255))
+        WIN.blit(k_placka, (320, 180))
         # collide points
-        kz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 250, 25, 25), 2)
-        kz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 250, 25, 25), 2)
-        kp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 250, 25, 25), 2)
-        kp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 250, 25, 25), 2)
+        kz_decrease = pygame.Rect(45, 270, 35, 35)
+        kz_increase = pygame.Rect(200, 270, 35, 35)
+        kp_decrease = pygame.Rect(265, 270, 35, 35)
+        kp_increase = pygame.Rect(420, 270, 35, 35)
 
         # telaci kebab part
-        telaci_kebab = kebab.render("Telaci Kebab", True, (0, 0, 0))
-        WIN.blit(telaci_kebab, (150, 400))
-        t_zemla = kebab.render("Zemla", True, (0, 0, 0))
-        WIN.blit(t_zemla, (50, 450))
-        t_placka = kebab.render("Placka", True, (0, 0, 0))
-        WIN.blit(t_placka, (350, 450))
+        telaci_kebab = kebab.render("Telaci Kebab", True, (255, 255, 255))
+        WIN.blit(telaci_kebab, (170, 380))
+        t_zemla = kebab.render("Zemla", True, (255, 255, 255))
+        WIN.blit(t_zemla, (100, 475))
+        t_placka = kebab.render("Placka", True, (255, 255, 255))
+        WIN.blit(t_placka, (320, 475))
         # collide points
-        tz_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(50, 500, 25, 25), 2)
-        tz_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(100, 500, 25, 25), 2)
-        tp_decrease = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(350, 500, 25, 25), 2)
-        tp_increase = pygame.draw.rect(WIN, (0, 0, 0), pygame.Rect(400, 500, 25, 25), 2)
+        tz_decrease = pygame.Rect(45, 563, 35, 35)
+        tz_increase = pygame.Rect(200, 563, 35, 35)
+        tp_decrease = pygame.Rect(265, 563, 35, 35)
+        tp_increase = pygame.Rect(420, 563, 35, 35)
 
         # pocty kebabov
         pocet_kz = kebab.render("" + str(kz), True, (0, 0, 0))
-        WIN.blit(pocet_kz, (75, 300))
+        WIN.blit(pocet_kz, (127, 280))
         pocet_kp = kebab.render("" + str(kp), True, (0, 0, 0))
-        WIN.blit(pocet_kp, (375, 300))
+        WIN.blit(pocet_kp, (346, 280))
         pocet_tz = kebab.render("" + str(tz), True, (0, 0, 0))
-        WIN.blit(pocet_tz, (75, 550))
+        WIN.blit(pocet_tz, (127, 573))
         pocet_tp = kebab.render("" + str(tp), True, (0, 0, 0))
-        WIN.blit(pocet_tp, (375, 550))
+        WIN.blit(pocet_tp, (346, 573))
 
         # ucet part
-        ucet = kebab.render("Ucet", True, (0, 0, 0))
-        WIN.blit(ucet, (200, 650))
+        ucet = kebab.render("Ucet", True, (255, 255, 255))
+        WIN.blit(ucet, (220, 675))
 
         pos_x, pos_y = pygame.mouse.get_pos()
 
