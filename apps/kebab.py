@@ -1,12 +1,12 @@
 import pygame
 from settings import WIN
-from utils.load_assets import BG_kebab, BACK
+from utils.load_assets import BG_kebab, BACK, MAIN_FONT
 
 pygame.init()
 
 # fonty
-kebab_kalkulacka = pygame.font.Font("freesansbold.ttf", 40)
-kebab = pygame.font.Font("freesansbold.ttf", 25)
+
+kebab = MAIN_FONT
 
 
 # vypisanie uctu
