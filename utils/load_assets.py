@@ -26,6 +26,8 @@ else:
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-d.png"))
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien-d.png"))
     BG_STOCKS = pygame.image.load(os.path.join("assets", "stock_market-d.png"))
+    BG_kebab = pygame.image.load(os.path.join("assets", "kebab-d.png"))
+    BG_kebab = pygame.transform.scale(BG_kebab, (500, 900))
     FONT_COLOR = (255, 255, 255)
 
 BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
