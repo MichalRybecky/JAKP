@@ -1,6 +1,6 @@
 import pygame
 from settings import WIN
-from utils.load_assets import BG_kebab, BACK, MAIN_FONT
+from utils.load_assets import BG_kebab, BACK, MAIN_FONT, FONT_COLOR
 
 pygame.init()
 
@@ -13,8 +13,8 @@ euro = pygame.font.Font("freesansbold.ttf", 20)
 def vypisanie_uctu(kz, kp, tz, tp):
     penaze = kz * 3.8 + kp * 4.1 + tz * 4.1 + tp * 4.5
     round_penaze = round(penaze, 2)
-    penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, (0, 0, 0))
-    euro_na_obrazovke = euro.render("€", True, (0, 0, 0))
+    penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, FONT_COLOR)
+    euro_na_obrazovke = euro.render("€", True, FONT_COLOR)
     WIN.blit(penaze_na_obrazovke, (220, 775))
     WIN.blit(euro_na_obrazovke, (300, 780))
 
@@ -45,11 +45,11 @@ def kebab_app():
         WIN.blit(BACK, (20, 20))
 
         # kuraci kebab part
-        kuraci_kebab = kebab.render("Kuraci Kebab", True, (255, 255, 255))
+        kuraci_kebab = kebab.render("Kuraci Kebab", True, FONT_COLOR)
         WIN.blit(kuraci_kebab, (170, 85))
-        k_zemla = kebab.render("Zemla", True, (255, 255, 255))
+        k_zemla = kebab.render("Zemla", True, FONT_COLOR)
         WIN.blit(k_zemla, (105, 175))
-        k_placka = kebab.render("Placka", True, (255, 255, 255))
+        k_placka = kebab.render("Placka", True, FONT_COLOR)
         WIN.blit(k_placka, (325, 175))
         # collide points
         kz_decrease = pygame.Rect(45, 270, 35, 35)
@@ -58,11 +58,11 @@ def kebab_app():
         kp_increase = pygame.Rect(420, 270, 35, 35)
 
         # telaci kebab part
-        telaci_kebab = kebab.render("Telaci Kebab", True, (255, 255, 255))
+        telaci_kebab = kebab.render("Telaci Kebab", True, FONT_COLOR)
         WIN.blit(telaci_kebab, (170, 380))
-        t_zemla = kebab.render("Zemla", True, (255, 255, 255))
+        t_zemla = kebab.render("Zemla", True, FONT_COLOR)
         WIN.blit(t_zemla, (105, 470))
-        t_placka = kebab.render("Placka", True, (255, 255, 255))
+        t_placka = kebab.render("Placka", True, FONT_COLOR)
         WIN.blit(t_placka, (325, 470))
         # collide points
         tz_decrease = pygame.Rect(45, 563, 35, 35)
@@ -71,17 +71,17 @@ def kebab_app():
         tp_increase = pygame.Rect(420, 563, 35, 35)
 
         # pocty kebabov
-        pocet_kz = kebab.render("" + str(kz), True, (0, 0, 0))
+        pocet_kz = kebab.render("" + str(kz), True, FONT_COLOR)
         WIN.blit(pocet_kz, (127, 280))
-        pocet_kp = kebab.render("" + str(kp), True, (0, 0, 0))
+        pocet_kp = kebab.render("" + str(kp), True, FONT_COLOR)
         WIN.blit(pocet_kp, (346, 280))
-        pocet_tz = kebab.render("" + str(tz), True, (0, 0, 0))
+        pocet_tz = kebab.render("" + str(tz), True, FONT_COLOR)
         WIN.blit(pocet_tz, (127, 573))
-        pocet_tp = kebab.render("" + str(tp), True, (0, 0, 0))
+        pocet_tp = kebab.render("" + str(tp), True, FONT_COLOR)
         WIN.blit(pocet_tp, (346, 573))
 
         # ucet part
-        ucet = kebab.render("Ucet", True, (255, 255, 255))
+        ucet = kebab.render("Ucet", True, FONT_COLOR)
         WIN.blit(ucet, (220, 675))
 
         pos_x, pos_y = pygame.mouse.get_pos()
