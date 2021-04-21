@@ -63,7 +63,7 @@ def kalkulacka_zivota(deadline) -> dict:
         "miliseconds": round(milliseconds, 5),
     }
 
-print(kalkulacka_zivota("03/06/2002"))
+
 
 
 
