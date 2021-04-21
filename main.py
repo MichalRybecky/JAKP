@@ -11,6 +11,7 @@ from settings import *
 from utils.load_assets import *
 from utils.connectivity import internet as connection_check
 from utils.load_user_settings import return_user_settings
+from apps.settings_menu import settings_menu
 from apps.meny import meny_app
 from apps.stocks import stocks_app
 from apps.kalkulacka_zivota import kalkulacka_zivota_app
@@ -119,11 +120,10 @@ def main():
                     exit_cooldown = FPS // 3
                 else:
                     no_internet_label_cooldown = 180
-
-            elif B_MENU.collidepoint(pos_x, pos_y):
-                print("MENU")
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
                 run = False
+            elif B_MENU.collidepoint(pos_x, pos_y):
+                settings_menu()
             if not internet:
                 if B_RECONNECT.collidepoint(pos_x, pos_y):
                     internet = connection_check()

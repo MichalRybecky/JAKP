@@ -17,9 +17,9 @@ if user_settings["theme"] == "light":
     BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-l.png"))
     BG = pygame.image.load(os.path.join("assets", "wallpaper-blank-w.png"))
     BG_kebab = pygame.image.load(os.path.join("assets", "kebab-l.png"))
-    BG_kebab = pygame.transform.scale(BG_kebab, (500, 900))
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien.png"))
     BG_STOCKS = pygame.image.load(os.path.join("assets", "stock_market.png"))
+    SETTINGS_MENU = pygame.image.load(os.path.join("assets", "menu-l.png"))
     FONT_COLOR = (10, 10, 10)
 else:
     BG_LOADING = pygame.image.load(os.path.join("assets", "wallpaper-loading-d.png"))
@@ -27,13 +27,15 @@ else:
     BG_MENY = pygame.image.load(os.path.join("assets", "premena_mien-d.png"))
     BG_STOCKS = pygame.image.load(os.path.join("assets", "stock_market-d.png"))
     BG_kebab = pygame.image.load(os.path.join("assets", "kebab-d.png"))
-    BG_kebab = pygame.transform.scale(BG_kebab, (500, 900))
+    SETTINGS_MENU = pygame.image.load(os.path.join("assets", "menu-d.png"))
     FONT_COLOR = (255, 255, 255)
 
 BG_LOADING = pygame.transform.scale(BG_LOADING, (500, 900))
 BG = pygame.transform.scale(BG, (500, 900))
 BG_MENY = pygame.transform.scale(BG_MENY, (500, 900))
 BG_STOCKS = pygame.transform.scale(BG_STOCKS, (500, 900))
+BG_kebab = pygame.transform.scale(BG_kebab, (500, 900))
+SETTINGS_MENU = pygame.transform.scale(SETTINGS_MENU, (230, 195))
 
 MAIN_FONT = pygame.font.Font("pixel_font.ttf", 12)
 BIG_FONT = pygame.font.Font("pixel_font.ttf", 20)
