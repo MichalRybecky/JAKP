@@ -36,6 +36,9 @@ def kalkulacka_zivota(deadline) -> dict:
 
     days = (months) * (365.242 / 12)
     daysInt = int(days)
+    
+    weeks = (days) / 7
+    weeksInt = int(weeks)
 
     hours = (days) * 24
     hoursInt = int(hours)
@@ -50,11 +53,19 @@ def kalkulacka_zivota(deadline) -> dict:
     millisecondsInt = int(milliseconds)
 
     return {
-        "years": years,
-        "months": months,
-        "days": days,
-        "hours": hours,
-        "minutes": minutes,
-        "seconds": seconds,
-        "miliseconds": milliseconds,
+        "years": round(years, 5),
+        "months": round(months, 5),
+        "weeks": round(weeks, 5),
+        "days": round(days, 5),
+        "hours": round(hours, 5),
+        "minutes": round(minutes, 5),
+        "seconds": round(seconds, 5),
+        "miliseconds": round(milliseconds, 5),
     }
+
+print(kalkulacka_zivota("03/06/2002"))
+
+
+
+
+
