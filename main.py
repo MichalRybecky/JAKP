@@ -10,12 +10,8 @@ import pygame
 from settings import *
 from utils.load_assets import *
 from utils.connectivity import internet as connection_check
-<<<<<<< HEAD
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
-=======
-from utils.load_user_settings import return_user_settings
->>>>>>> f87637598b2d0d4de2fed4c05d0c5dec7481a7d6
 from apps.meny import meny_app
 from apps.stocks import stocks_app
 from apps.kalkulacka_zivota import kalkulacka_zivota_app
@@ -130,7 +126,7 @@ def main():
                     no_internet_label_cooldown = 180
 
             elif B_MENU.collidepoint(pos_x, pos_y):
-                print("MENU")
+                settings_menu()
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
                 run = False
             if not internet:
