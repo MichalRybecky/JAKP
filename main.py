@@ -105,10 +105,10 @@ def main():
                 kalkulacka_zivota_app()
                 exit_cooldown = FPS // 3
             elif B_MATHE.collidepoint(pos_x, pos_y):
-                print("MATHE")
-            elif B_CALCUL.collidepoint(pos_x, pos_y):
                 vsemocna_kalkulacka_app()
                 exit_cooldown = FPS // 3
+            elif B_CALCUL.collidepoint(pos_x, pos_y):
+                print("CALCUL")
             elif B_MENY.collidepoint(pos_x, pos_y):
                 if internet:
                     meny_app(rates)
