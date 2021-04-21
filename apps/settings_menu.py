@@ -1,7 +1,7 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import SETTINGS_MENU
+from utils.load_assets import SETTINGS_MENU_L, SETTINGS_MENU_D 
 from settings import WIN, FPS, UI_COLOR
 from utils.user_settings_handling import return_user_settings
 from utils.user_settings_handling import write_user_settings
@@ -32,7 +32,11 @@ def settings_menu():
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        WIN.blit(SETTINGS_MENU, (245, 25))
+        user_settings = return_user_settings()
+        if user_settings["theme"] == "light":
+            WIN.blit(SETTINGS_MENU_L, (245, 25))
+        else:
+            WIN.blit(SETTINGS_MENU_D, (245, 25))
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click and click_cooldown == 0.0:

@@ -35,7 +35,11 @@ def main():
     exit_cooldown = 0
     no_internet_label_cooldown = 0
     clock = pygame.time.Clock()
-
+    user_settings = return_user_settings()
+    if user_settings["theme"] == "light":
+        BG_LOADING = BG_LOADING_L
+    else:
+        BG_LOADING = BG_LOADING_D
 
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
@@ -72,7 +76,12 @@ def main():
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        from utils.load_assets import BG, SETTINGS_MENU
+        user_settings = return_user_settings()
+        if user_settings["theme"] == "light":
+            BG = BG_L
+        else:
+            BG = BG_D
+
         WIN.blit(BG, (0, 0))
         if not internet:
             WIN.blit(BUTTON, (WIDTH_H - 80, 30))

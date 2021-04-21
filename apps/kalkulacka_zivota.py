@@ -1,8 +1,9 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG, SMALL_FONT, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR
+from utils.load_assets import BG_D, BG_L, SMALL_FONT, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
 from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS, UI_COLOR
+from utils.user_settings_handling import return_user_settings
 
 from utils.kalkulacka_zivota import kalkulacka_zivota
 
@@ -14,6 +15,12 @@ def kalkulacka_zivota_app():
     run = True
     click = False
     clock = pygame.time.Clock()
+
+    user_settings = return_user_settings()
+    if user_settings["theme"] == "light":
+        FONT_COLOR = FONT_COLOR_L
+    else:
+        FONT_COLOR = FONT_COLOR_D
     input_field = pygame_textinput.TextInput(
         initial_string="31/12/2000",
         font_family="pixel_font.ttf",
@@ -36,6 +43,12 @@ def kalkulacka_zivota_app():
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
+        if user_settings["theme"] == "light":
+            FONT_COLOR = FONT_COLOR_L
+            BG = BG_L
+        else:
+            FONT_COLOR = FONT_COLOR_D
+            BG = BG_D
         WIN.blit(BG, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))

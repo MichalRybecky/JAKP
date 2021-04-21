@@ -1,8 +1,9 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_STOCKS, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR
+from utils.load_assets import BG_STOCKS_L, BG_STOCKS_D, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
 from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from utils.user_settings_handling import return_user_settings
 
 from utils.stocks import get_price
 
@@ -26,6 +27,11 @@ def stocks_app():
     run = True
     click = False
     clock = pygame.time.Clock()
+    user_settings = return_user_settings()
+    if user_settings["theme"] == "light":
+        FONT_COLOR = FONT_COLOR_L
+    else:
+        FONT_COLOR = FONT_COLOR_D
     stock_input = pygame_textinput.TextInput(
         initial_string="GME",
         font_family="pixel_font.ttf",
@@ -51,6 +57,14 @@ def stocks_app():
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
+        user_settings = return_user_settings()
+        if user_settings["theme"] == "light":
+            FONT_COLOR = FONT_COLOR_L
+            BG_STOCKS = BG_STOCKS_L
+        else:
+            FONT_COLOR = FONT_COLOR_D
+            BG_STOCKS = BG_STOCKS_D
+
         WIN.blit(BG_STOCKS, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))

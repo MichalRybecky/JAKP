@@ -1,6 +1,7 @@
 import pygame
 from settings import WIN
-from utils.load_assets import BG_kebab, BACK, MAIN_FONT, FONT_COLOR
+from utils.load_assets import BG_kebab_L, BG_kebab_D, BACK, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
+from utils.user_settings_handling import return_user_settings
 
 pygame.init()
 
@@ -41,6 +42,14 @@ def kebab_app():
     click = False
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
+        user_settings = return_user_settings()
+        if user_settings["theme"] == "light":
+            BG = BG_L
+            FONT_COLOR = FONT_COLOR_L
+        else:
+            BG = BG_D
+            FONT_COLOR = FONT_COLOR_D
+
         WIN.blit(BG_kebab, (0, 0))
         WIN.blit(BACK, (20, 20))
 

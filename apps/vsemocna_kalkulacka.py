@@ -1,6 +1,6 @@
 import pygame
 from settings import WIN, FPS
-from utils.load_assets import BACK, BG, MAIN_FONT, FONT_COLOR
+from utils.load_assets import BACK, BG_L, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
 
 pygame.init()
 
@@ -18,18 +18,18 @@ def vsemocna_kalkulacka_app():
     while run:
 
         # obrazovka + back button
-        WIN.blit(BG, (0, 0))
+        WIN.blit(BG_L, (0, 0))
         WIN.blit(BACK, (20, 20))
 
-        kalkul_1 = font.render("Obsah a Objem", True, FONT_COLOR)
+        kalkul_1 = font.render("Obsah a Objem", True, FONT_COLOR_L)
         WIN.blit(kalkul_1, (170, 150))
-        kalkul_2 = font.render("Premena jednotiek", True, FONT_COLOR)
+        kalkul_2 = font.render("Premena jednotiek", True, FONT_COLOR_L)
         WIN.blit(kalkul_2, (150, 250))
-        kalkul_3 = font.render("Štatistika", True, FONT_COLOR)
+        kalkul_3 = font.render("Štatistika", True, FONT_COLOR_L)
         WIN.blit(kalkul_3, (150, 350))
-        kalkul_4 = font.render("Financie", True, FONT_COLOR)
+        kalkul_4 = font.render("Financie", True, FONT_COLOR_L)
         WIN.blit(kalkul_4, (150, 450))
-        kalkul_5 = font.render("Kvadratická rovnica", True, FONT_COLOR)
+        kalkul_5 = font.render("Kvadratická rovnica", True, FONT_COLOR_L)
         WIN.blit(kalkul_5, (150, 550))
 
         pos_x, pos_y = pygame.mouse.get_pos()

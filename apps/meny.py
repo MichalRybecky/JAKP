@@ -1,8 +1,9 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_MENY, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR
+from utils.load_assets import BG_MENY_L, BG_MENY_D, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
 from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from utils.user_settings_handling import return_user_settings
 
 from utils.premeny_mien import from_eur, from_xyz
 
@@ -26,6 +27,13 @@ def meny_app(rates):
     run = True
     click = False
     clock = pygame.time.Clock()
+
+    user_settings = return_user_settings()
+    if user_settings["theme"] == "light":
+        FONT_COLOR = FONT_COLOR_L
+    else:    
+        FONT_COLOR = FONT_COLOR_D
+
     cur_amount = pygame_textinput.TextInput(
         initial_string="1",
         font_family="pixel_font.ttf",
@@ -76,6 +84,13 @@ def meny_app(rates):
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
+        user_settings = return_user_settings()
+        if user_settings["theme"] == "light":
+            BG_MENY = BG_MENY_L
+            FONT_COLOR = FONT_COLOR_L
+        else:    
+            FONT_COLOR = FONT_COLOR_D
+            BG_MENY = BG_MENY_D
         WIN.blit(BG_MENY, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
