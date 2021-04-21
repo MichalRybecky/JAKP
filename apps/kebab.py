@@ -5,16 +5,18 @@ from utils.load_assets import BG_kebab, BACK, MAIN_FONT
 pygame.init()
 
 # fonty
-
 kebab = MAIN_FONT
+euro = pygame.font.Font("freesansbold.ttf", 20)
 
 
 # vypisanie uctu
 def vypisanie_uctu(kz, kp, tz, tp):
     penaze = kz * 3.8 + kp * 4.1 + tz * 4.1 + tp * 4.5
     round_penaze = round(penaze, 2)
-    penaze_na_obrazovke = kebab.render("" + str(round_penaze) + ' €', True, (0, 0, 0))
-    WIN.blit(penaze_na_obrazovke, (220, 780))
+    penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, (0, 0, 0))
+    euro_na_obrazovke = euro.render("€", True, (0, 0, 0))
+    WIN.blit(penaze_na_obrazovke, (220, 775))
+    WIN.blit(euro_na_obrazovke, (300, 780))
 
 
 def kebab_app():
@@ -46,9 +48,9 @@ def kebab_app():
         kuraci_kebab = kebab.render("Kuraci Kebab", True, (255, 255, 255))
         WIN.blit(kuraci_kebab, (170, 85))
         k_zemla = kebab.render("Zemla", True, (255, 255, 255))
-        WIN.blit(k_zemla, (100, 180))
+        WIN.blit(k_zemla, (105, 175))
         k_placka = kebab.render("Placka", True, (255, 255, 255))
-        WIN.blit(k_placka, (320, 180))
+        WIN.blit(k_placka, (325, 175))
         # collide points
         kz_decrease = pygame.Rect(45, 270, 35, 35)
         kz_increase = pygame.Rect(200, 270, 35, 35)
@@ -59,9 +61,9 @@ def kebab_app():
         telaci_kebab = kebab.render("Telaci Kebab", True, (255, 255, 255))
         WIN.blit(telaci_kebab, (170, 380))
         t_zemla = kebab.render("Zemla", True, (255, 255, 255))
-        WIN.blit(t_zemla, (100, 475))
+        WIN.blit(t_zemla, (105, 470))
         t_placka = kebab.render("Placka", True, (255, 255, 255))
-        WIN.blit(t_placka, (320, 475))
+        WIN.blit(t_placka, (325, 470))
         # collide points
         tz_decrease = pygame.Rect(45, 563, 35, 35)
         tz_increase = pygame.Rect(200, 563, 35, 35)
