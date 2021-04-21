@@ -47,15 +47,16 @@ def main():
     # Miesto pre robenie connections pre appky ktore to potrebuju
     internet = connection_check()
 
-    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
-    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
-    res = conn.getresponse()
-    data = res.read()
-    root = ET.fromstring(data)
-    rates = {}
-    for i in root[2][0]:
-        entry = i.attrib
-        rates.update({entry["currency"]: float(entry["rate"])})
+    if internet:
+        conn = http.client.HTTPSConnection("www.ecb.europa.eu")
+        conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
+        res = conn.getresponse()
+        data = res.read()
+        root = ET.fromstring(data)
+        rates = {}
+        for i in root[2][0]:
+            entry = i.attrib
+            rates.update({entry["currency"]: float(entry["rate"])})
 
     # BUTTONS INITIALIZATION
     B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
@@ -68,6 +69,8 @@ def main():
     B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
     B_X = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
+    # toto tu niekto zabudol dat
+    FONT_COLOR = "black"
     if not internet:
         B_RECONNECT = pygame.Rect(WIDTH_H - 80, 30, 160, 50)
         label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
