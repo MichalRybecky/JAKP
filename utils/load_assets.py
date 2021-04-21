@@ -6,7 +6,7 @@ aby sme v main.py nemali bordel
 import os
 import pygame
 
-from utils.load_user_settings import return_user_settings
+from utils.user_settings_handling import return_user_settings
 from settings import WIDTH, HEIGHT, ICON_SIZE, ICON_SIZE_H
 
 

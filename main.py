@@ -10,7 +10,7 @@ import pygame
 from settings import *
 from utils.load_assets import *
 from utils.connectivity import internet as connection_check
-from utils.load_user_settings import return_user_settings
+from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 from apps.meny import meny_app
 from apps.stocks import stocks_app
@@ -34,6 +34,7 @@ def main():
     exit_cooldown = 0
     no_internet_label_cooldown = 0
     clock = pygame.time.Clock()
+
 
     WIN.blit(BG_LOADING, (0, 0))
     pygame.display.update()
@@ -70,6 +71,7 @@ def main():
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
+        from utils.load_assets import BG, SETTINGS_MENU
         WIN.blit(BG, (0, 0))
         if not internet:
             WIN.blit(BUTTON, (WIDTH_H - 80, 30))
