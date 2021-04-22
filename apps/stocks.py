@@ -1,8 +1,8 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_STOCKS_L, BG_STOCKS_D, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
-from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from utils.load_assets import BG_STOCKS_L, BG_STOCKS_D, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
+from settings import WIN, UI_COLOR, WIDTH, WIDTH_H, HEIGHT_H, FPS
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 
