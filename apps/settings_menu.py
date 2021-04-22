@@ -42,7 +42,8 @@ def settings_menu():
         if click and click_cooldown == 0.0:
             if B_THEME_TOGGLE.collidepoint(pos_x, pos_y):
                 toggle_theme()
-                click_cooldown = FPS // 3 
+                run = False
+                #click_cooldown = FPS // 3 
             else:
                 run = False
 
