@@ -101,12 +101,15 @@ def meny_app(rates):
                     click = False
 
         # BUTTONS AND COLLIDEPOINTS
+        label_cur_amount = BIG_FONT.render(cur_amount.get_text(), 1, FONT_COLOR)
         WIN.blit(
-            cur_amount.get_surface(),
+            label_cur_amount,
             (175 - len(cur_amount.get_text()) * 12, 275),
         )
-        WIN.blit(cur_from.get_surface(), (WIDTH - 140, 280))
-        WIN.blit(cur_to.get_surface(), (WIDTH - 140, 405))
+        label_cur_from = BIG_FONT.render(cur_from.get_text(), 1, FONT_COLOR)
+        label_cur_to = BIG_FONT.render(cur_to.get_text(), 1, FONT_COLOR)
+        WIN.blit(label_cur_from, (WIDTH - 145, 275))
+        WIN.blit(label_cur_to, (WIDTH - 145, 400))
 
         # LABELS
         label_konvertuj = BIG_FONT.render("Convert", 1, FONT_COLOR)
@@ -134,21 +137,7 @@ def meny_app(rates):
             elif B_CONVERT.collidepoint(pos_x, pos_y):
                 result = convert(rates, cur_amount, cur_from, cur_to)
             elif B_SWITCH.collidepoint(pos_x, pos_y) and switch_cooldown == 0:
-                switch_1, switch_2 = cur_from.get_text(), cur_to.get_text()
-                cur_from = pygame_textinput.TextInput(
-                    initial_string=switch_2,
-                    font_family="pixel_font.ttf",
-                    font_size=16,
-                    text_color=FONT_COLOR,
-                    cursor_color=FONT_COLOR,
-                )
-                cur_to = pygame_textinput.TextInput(
-                    initial_string=switch_1,
-                    font_family="pixel_font.ttf",
-                    font_size=16,
-                    text_color=FONT_COLOR,
-                    cursor_color=FONT_COLOR,
-                )
+                cur_from, cur_to = cur_to, cur_from
                 cur_from.update(events)
                 cur_to.update(events)
                 switch_cooldown = FPS // 3

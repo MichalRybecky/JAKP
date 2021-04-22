@@ -29,10 +29,7 @@ def stocks_app():
     click = False
     clock = pygame.time.Clock()
     user_settings = return_user_settings()
-    if user_settings["theme"] == "light":
-        FONT_COLOR = FONT_COLOR_L
-    else:
-        FONT_COLOR = FONT_COLOR_D
+    FONT_COLOR = FONT_COLOR_L if user_settings["theme"] == "light" else FONT_COLOR_D
     stock_input = pygame_textinput.TextInput(
         initial_string="GME",
         font_family="pixel_font.ttf",
@@ -53,9 +50,6 @@ def stocks_app():
     B_BACK = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 65 - 20, 20, 60, 60)
 
-    # LABELS
-    label_return = BIG_FONT.render("Return", 1, FONT_COLOR)
-
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
@@ -65,20 +59,20 @@ def stocks_app():
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
-        # BUTTONS AND COLLIDEPOINTS
+        # LABELS
+        label_stock_input = BIG_FONT.render(stock_input.get_text(), 1, FONT_COLOR)
         WIN.blit(
-            stock_input.get_surface(),
+            label_stock_input,
             (WIDTH_H - len(stock_input.get_text()) * 14, 285),
         )
-
-        # LABELS
+        label_return = BIG_FONT.render("Return", 1, FONT_COLOR)
         WIN.blit(label_return, (WIDTH_H - (label_return.get_width() // 2), 395))
 
         if result != 0.0:
-            label_price = MAIN_FONT.render(result, 1, FONT_COLOR)
+            label_price = BIG_FONT.render(result, 1, FONT_COLOR)
             WIN.blit(
                 label_price,
-                (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 65),
+                (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 60),
             )
 
         # Zistovanie, ci nebolo kliknute na textove pole
@@ -91,6 +85,8 @@ def stocks_app():
                 run = False
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
+                events = pygame.event.get()
+                stock_input.update(events)
             else:
                 active = None
 
