@@ -4,6 +4,7 @@ import pygame_textinput
 from utils.load_assets import BG_STOCKS_L, BG_STOCKS_D, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
 from settings import WIN, UI_COLOR, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 from utils.user_settings_handling import return_user_settings
+from apps.settings_menu import settings_menu
 
 from utils.stocks import get_price
 
@@ -58,13 +59,8 @@ def stocks_app():
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
-        if user_settings["theme"] == "light":
-            FONT_COLOR = FONT_COLOR_L
-            BG_STOCKS = BG_STOCKS_L
-        else:
-            FONT_COLOR = FONT_COLOR_D
-            BG_STOCKS = BG_STOCKS_D
-
+        BG_STOCKS = BG_STOCKS_L if user_settings["theme"] == "light" else BG_STOCKS_D
+        FONT_COLOR = FONT_COLOR_L if user_settings["theme"] == "light" else FONT_COLOR_D
         WIN.blit(BG_STOCKS, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
@@ -93,6 +89,8 @@ def stocks_app():
                 result = return_price(stock_input.get_text().strip())
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
+            elif B_MENU.collidepoint(pos_x, pos_y):
+                settings_menu()
             else:
                 active = None
 

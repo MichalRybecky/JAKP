@@ -37,9 +37,11 @@ def main():
     clock = pygame.time.Clock()
     user_settings = return_user_settings()
     if user_settings["theme"] == "light":
+        BG = BG_L
         BG_LOADING = BG_LOADING_L
         FONT_COLOR = FONT_COLOR_L
     else:
+        BG = BG_D
         BG_LOADING = BG_LOADING_D
         FONT_COLOR = FONT_COLOR_D
 
@@ -48,7 +50,6 @@ def main():
 
     # Miesto pre robenie connections pre appky ktore to potrebuju
     internet = connection_check()
-
     if internet:
         conn = http.client.HTTPSConnection("www.ecb.europa.eu")
         conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
@@ -81,12 +82,9 @@ def main():
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
-        if user_settings["theme"] == "light":
-            BG = BG_L
-        else:
-            BG = BG_D
-
+        BG = BG_L if user_settings["theme"] == "light" else BG_D
         WIN.blit(BG, (0, 0))
+
         if not internet:
             WIN.blit(BUTTON, (WIDTH_H - 80, 30))
             WIN.blit(label_reconnect, (WIDTH_H - 60, 40))
@@ -137,7 +135,6 @@ def main():
                     exit_cooldown = FPS // 3
                 else:
                     no_internet_label_cooldown = 180
-
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:

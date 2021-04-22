@@ -3,9 +3,6 @@
 =====================================
 
 Funkcionalita:
-	Kebab kalkulacka - Maxo
-		- rozne pobocky, ceny podla vybratej pobocky
-		
 	Matematicka kalkulacka
 		- objemy, obsahy kalkulacka
 		- premena jednotiek
@@ -17,9 +14,15 @@ Funkcionalita:
 
 	Prevodnik ciselnych sustav
 
-	Kalkulacka zivota
-
 	Otvaranie SSDLS loot boxov (ked sa budu buduce generacie nudit)
 		- tocenie
 		- zapis vytocenych veci to CSV suboru
 		- precitanie vytocenych veci a zobrazenie inventaru
+	
+
+=====================================
+|			JAKP IDEAS list			|
+=====================================
+
+- zmena jazyka svk/eng
+- v settings okrem credits aj zanechaj odkaz a bug report
