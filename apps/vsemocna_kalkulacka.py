@@ -1,13 +1,14 @@
 import pygame
 from settings import WIN, FPS
-from utils.load_assets import BACK, BG_L, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
+from utils.load_assets import BACK, BG_vsemocna_L, BG_vsemocna_D, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
+from utils.user_settings_handling import return_user_settings
 
 pygame.init()
 
 font = MAIN_FONT
 
-def vsemocna_kalkulacka_app():
 
+def vsemocna_kalkulacka_app():
     B_BACK = pygame.Rect(20, 20, 60, 60)
     cooldown = 0
     clock = pygame.time.Clock()
@@ -17,20 +18,29 @@ def vsemocna_kalkulacka_app():
     click = False
     while run:
 
+        user_settings = return_user_settings()
+
+        if user_settings["theme"] == "light":
+            BG_vsemocna = BG_vsemocna_L
+            FONT_COLOR = FONT_COLOR_L
+        else:
+            BG_vsemocna = BG_vsemocna_D
+            FONT_COLOR = FONT_COLOR_D
+
         # obrazovka + back button
-        WIN.blit(BG_L, (0, 0))
+        WIN.blit(BG_vsemocna, (0, 0))
         WIN.blit(BACK, (20, 20))
 
-        kalkul_1 = font.render("Obsah a Objem", True, FONT_COLOR_L)
-        WIN.blit(kalkul_1, (170, 150))
-        kalkul_2 = font.render("Premena jednotiek", True, FONT_COLOR_L)
-        WIN.blit(kalkul_2, (150, 250))
-        kalkul_3 = font.render("Štatistika", True, FONT_COLOR_L)
-        WIN.blit(kalkul_3, (150, 350))
-        kalkul_4 = font.render("Financie", True, FONT_COLOR_L)
-        WIN.blit(kalkul_4, (150, 450))
-        kalkul_5 = font.render("Kvadratická rovnica", True, FONT_COLOR_L)
-        WIN.blit(kalkul_5, (150, 550))
+        kalkul_1 = font.render("Obsah a Objem", True, FONT_COLOR)
+        WIN.blit(kalkul_1, (170, 170))
+        kalkul_2 = font.render("Premena jednotiek", True, FONT_COLOR)
+        WIN.blit(kalkul_2, (150, 290))
+        kalkul_3 = font.render("Štatistika", True, FONT_COLOR)
+        WIN.blit(kalkul_3, (200, 410))
+        kalkul_4 = font.render("Financie", True, FONT_COLOR)
+        WIN.blit(kalkul_4, (205, 530))
+        kalkul_5 = font.render("Kvadratická rovnica", True, FONT_COLOR)
+        WIN.blit(kalkul_5, (145, 650))
 
         pos_x, pos_y = pygame.mouse.get_pos()
 
