@@ -11,7 +11,7 @@ euro = pygame.font.Font("freesansbold.ttf", 20)
 
 
 # vypisanie uctu
-def vypisanie_uctu(kz, kp, tz, tp):
+def vypisanie_uctu(kz, kp, tz, tp, FONT_COLOR):
     penaze = kz * 3.8 + kp * 4.1 + tz * 4.1 + tp * 4.5
     round_penaze = round(penaze, 2)
     penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, FONT_COLOR)
@@ -43,11 +43,12 @@ def kebab_app():
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
+        
         if user_settings["theme"] == "light":
-            BG = BG_L
+            BG_kebab = BG_kebab_L
             FONT_COLOR = FONT_COLOR_L
         else:
-            BG = BG_D
+            BG_kebab = BG_kebab_D
             FONT_COLOR = FONT_COLOR_D
 
         WIN.blit(BG_kebab, (0, 0))
@@ -152,7 +153,7 @@ def kebab_app():
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
 
-        vypisanie_uctu(kz, kp, tz, tp)
+        vypisanie_uctu(kz, kp, tz, tp, FONT_COLOR)
 
         if cooldown != 0:
             cooldown -= 1
