@@ -7,7 +7,7 @@ def kalkulacka_zivota(deadline) -> dict:
     dlzke zivota
     """
     error = "Incorrect date format"
-    if "/" not in deadline:
+    if "/" not in deadline or len(deadline) != 10:
         return error
     deadline_list = deadline.split("/")
     if len(deadline_list) > 3:
