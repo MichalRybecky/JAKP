@@ -1,1 +1,1 @@
-dark,classic
+light,classic
