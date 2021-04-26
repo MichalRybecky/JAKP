@@ -5,6 +5,7 @@ Hlavny file projektu,
 menu, sluzi na spustanie modulov a submodulov
 """
 import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 
 from settings import *
