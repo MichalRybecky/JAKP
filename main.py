@@ -17,7 +17,6 @@ from apps.meny import meny_app
 from apps.stocks import stocks_app
 from apps.kalkulacka_zivota import kalkulacka_zivota_app
 from apps.kebab import kebab_app
-from apps.kebab import vypisanie_uctu
 from apps.vsemocna_kalkulacka import vsemocna_kalkulacka_app
 
 # Meny app importy
