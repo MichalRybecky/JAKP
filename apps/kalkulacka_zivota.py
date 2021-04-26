@@ -1,9 +1,10 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_D, BG_L, SMALL_FONT, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
+from utils.load_assets import BG_D, BG_L, SMALL_FONT, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D, BG_ZIVOT_L, BG_ZIVOT_D
 from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS, UI_COLOR
 from utils.user_settings_handling import return_user_settings
+from apps.settings_menu import settings_menu
 
 from utils.kalkulacka_zivota import kalkulacka_zivota
 
@@ -43,13 +44,11 @@ def kalkulacka_zivota_app():
 
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        if user_settings["theme"] == "light":
-            FONT_COLOR = FONT_COLOR_L
-            BG = BG_L
-        else:
-            FONT_COLOR = FONT_COLOR_D
-            BG = BG_D
-        WIN.blit(BG, (0, 0))
+        user_settings = return_user_settings()
+        FONT_COLOR = FONT_COLOR_L if user_settings["theme"] == "light" else FONT_COLOR_D
+        BG_ZIVOT = BG_ZIVOT_L if user_settings["theme"] == "light" else BG_ZIVOT_D
+        
+        WIN.blit(BG_ZIVOT, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
@@ -90,6 +89,8 @@ def kalkulacka_zivota_app():
                 active = input_field
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
+            elif B_MENU.collidepoint(pos_x, pos_y):
+                settings_menu()
             elif B_RETURN.collidepoint(pos_x, pos_y):
                 if return_cooldown == 0:
                     return_cooldown = FPS // 6
