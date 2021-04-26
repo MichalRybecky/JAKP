@@ -1,7 +1,8 @@
 import pygame
-from settings import WIN, FPS
-from utils.load_assets import BACK, BG_vsemocna_L, BG_vsemocna_D, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
+from settings import WIN, FPS, WIDTH
+from utils.load_assets import BACK, MENU, BG_vsemocna_L, BG_vsemocna_D, MAIN_FONT, FONT_COLOR_L, FONT_COLOR_D
 from utils.user_settings_handling import return_user_settings
+from apps.settings_menu import settings_menu
 
 pygame.init()
 
@@ -10,6 +11,7 @@ font = MAIN_FONT
 
 def vsemocna_kalkulacka_app():
     B_BACK = pygame.Rect(20, 20, 60, 60)
+    B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
     cooldown = 0
     clock = pygame.time.Clock()
 
@@ -30,6 +32,7 @@ def vsemocna_kalkulacka_app():
         # obrazovka + back button
         WIN.blit(BG_vsemocna, (0, 0))
         WIN.blit(BACK, (20, 20))
+        WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
         kalkul_1 = font.render("Obsah a Objem", True, FONT_COLOR)
         WIN.blit(kalkul_1, (170, 170))
@@ -59,6 +62,8 @@ def vsemocna_kalkulacka_app():
         if click:
             if B_BACK.collidepoint(pos_x, pos_y):
                 run = False
+            elif B_MENU.collidepoint(pos_x, pos_y):
+                settings_menu()
 
         if cooldown != 0:
             cooldown -= 1
