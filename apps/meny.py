@@ -1,7 +1,15 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_MENY_L, BG_MENY_D, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
+from utils.load_assets import (
+    BG_MENY_L,
+    BG_MENY_D,
+    BIG_FONT,
+    BACK,
+    MENU,
+    FONT_COLOR_L,
+    FONT_COLOR_D,
+)
 from settings import WIN, WIDTH, HEIGHT_H, FPS
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
@@ -11,9 +19,7 @@ from utils.premeny_mien import from_eur, from_xyz
 
 def convert(rates, cur_amount, cur_from, cur_to):
     if cur_from.get_text().lower() == "eur":
-        result = from_eur(
-            rates[cur_to.get_text().upper()], int(cur_amount.get_text())
-        )
+        result = from_eur(rates[cur_to.get_text().upper()], int(cur_amount.get_text()))
     else:
         result = from_xyz(
             rates[cur_from.get_text().upper()], int(cur_amount.get_text())
@@ -156,5 +162,6 @@ def meny_app(rates):
 
         if switch_cooldown != 0:
             switch_cooldown -= 1
+
         pygame.display.update()
         clock.tick(FPS)

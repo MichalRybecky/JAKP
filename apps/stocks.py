@@ -1,15 +1,23 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_STOCKS_L, BG_STOCKS_D, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D
-from settings import WIN, UI_COLOR, WIDTH, WIDTH_H, HEIGHT_H, FPS
+from utils.load_assets import (
+    BG_STOCKS_L,
+    BG_STOCKS_D,
+    BIG_FONT,
+    BACK,
+    MENU,
+    FONT_COLOR_L,
+    FONT_COLOR_D,
+)
+from settings import WIN, WIDTH, WIDTH_H, HEIGHT_H, FPS
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 
 from utils.stocks import get_price
 
 
-def return_price(ticker):
+def price_validation(ticker):
     result = get_price(ticker)
     if result < 0:
         if result == -1:
@@ -36,7 +44,7 @@ def stocks_app():
         font_size=20,
         text_color=FONT_COLOR,
         cursor_color=FONT_COLOR,
-        max_string_length=5
+        max_string_length=5,
     )
     events = pygame.event.get()
     stock_input.update(events)
@@ -80,7 +88,7 @@ def stocks_app():
             if B_STOCK_INPUT.collidepoint(pos_x, pos_y):
                 active = stock_input
             elif B_GET_PRICE.collidepoint(pos_x, pos_y):
-                result = return_price(stock_input.get_text().strip())
+                result = price_validation(stock_input.get_text().strip())
             elif B_BACK.collidepoint(pos_x, pos_y):
                 run = False
             elif B_MENU.collidepoint(pos_x, pos_y):
@@ -98,7 +106,7 @@ def stocks_app():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RETURN]:
-            result = return_price(stock_input.get_text().strip())
+            result = price_validation(stock_input.get_text().strip())
 
         # Event handling
         events = pygame.event.get()
