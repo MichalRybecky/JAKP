@@ -16,17 +16,17 @@
 ### TODO list
 * Funkcionalita:
 	* Matematicka kalkulačka
-	* - objemy, obsahy
-	* - premena jednotiek
-	* - štatistické výpočty
-	* - finančná matematika
-	* - kvadratická rovnica
+		* objemy, obsahy
+		* premena jednotiek
+		* štatistické výpočty
+		* finančná matematika
+		* kvadratická rovnica
 	* Abecedný zoraďovač
 	* Prevodník číselných sústav
 	* Otváranie SSDLS loot boxov
-	* - točenie itemov
-	* - inventár v CSV súbore
-	* - možnosť zobraziť inventár
+		* točenie itemov
+		* inventár v CSV súbore
+		* možnosť zobraziť inventár
 
 ### IDEAS list
 * zmena jazyka medzi svk/eng
