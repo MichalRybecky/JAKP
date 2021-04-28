@@ -1,2 +1,5 @@
 berta,legendary,2
 jonas,rare,5
+vrchnak,common,12
+rusko,common,8
+marslakocka,super_rare,3
