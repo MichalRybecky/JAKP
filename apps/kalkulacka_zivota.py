@@ -82,9 +82,9 @@ def kalkulacka_zivota_app():
                 label_weeks = MAIN_FONT.render(f'Weeks: {str(result["weeks"])}', 1, FONT_COLOR)
                 label_days = MAIN_FONT.render(f'Days: {str(result["days"])}', 1, FONT_COLOR)
                 label_hours = MAIN_FONT.render(f'Hours: {str(result["hours"])}', 1, FONT_COLOR)
-                label_minutes = SMALL_FONT.render(f'Minutes: {str(result["minutes"])}', 1, FONT_COLOR)
-                label_seconds = SMALL_FONT.render(f'Seconds: {str(result["seconds"])}', 1, FONT_COLOR)
-                label_miliseconds = SMALL_FONT.render(f'Miliseconds: {str(result["miliseconds"])}', 1, FONT_COLOR)
+                label_minutes = MAIN_FONT.render(f'Minutes: {str(result["minutes"])}', 1, FONT_COLOR)
+                label_seconds = MAIN_FONT.render(f'Seconds: {str(result["seconds"])}', 1, FONT_COLOR)
+                label_miliseconds = MAIN_FONT.render(f'Miliseconds: {str(result["miliseconds"])}', 1, FONT_COLOR)
                 to_blit = [label_years, label_months, label_weeks, label_days, label_hours, label_minutes, label_seconds, label_miliseconds]
 
                 y_diff = 0

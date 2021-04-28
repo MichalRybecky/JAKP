@@ -53,14 +53,14 @@ def kalkulacka_zivota(deadline) -> dict:
     millisecondsInt = int(milliseconds)
 
     return {
-        "years": round(years, 5),
-        "months": round(months, 5),
-        "weeks": round(weeks, 5),
-        "days": round(days, 5),
-        "hours": round(hours, 5),
-        "minutes": round(minutes, 5),
-        "seconds": round(seconds, 5),
-        "miliseconds": round(milliseconds, 5),
+        "years": round(years, 2),
+        "months": round(months, 2),
+        "weeks": round(weeks, 1),
+        "days": round(days),
+        "hours": round(hours),
+        "minutes": round(minutes),
+        "seconds": round(seconds),
+        "miliseconds": round(milliseconds),
     }
 
 
