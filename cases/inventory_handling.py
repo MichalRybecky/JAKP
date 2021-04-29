@@ -1,7 +1,13 @@
 def read_inventory(sort_type="normal") -> dict:
     """
     Vracia dictionary itemov v inventory.txt vo forme type, rarity, amount
-    moze dostat string "normal", "by_rarity", podla zoradenia outputu
+    kde type je nazov itemu (str), rarity je int hodnota rarity:
+        1 = legendary,
+        2 = super rare,
+        3 = rare,
+        4 = common,
+    a amount je int poctu itemu v inventari
+    - moze dostat string "normal", "by_rarity", podla zoradenia outputu
     """
     data = []
     with open("cases/inventory.txt", "r") as file:
@@ -16,28 +22,27 @@ def read_inventory(sort_type="normal") -> dict:
     rare = len([item for item in data if item["rarity"] == "rare"])
     super_rare = len([item for item in data if item["rarity"] == "super_rare"])
 
-    legendary_counter = 0
-    common_counter = 0
-    rare_counter = 0
-    super_rare_counter = 0
-
+    current = "legendary"
     sorted_data = []
-    while legendary_counter != 0 and common_counter != 0 and rare_counter != 0 and super_rare != 0:
-        for item in data:
-            if item["rarity"] == "legendary" and legendary_counter != 0:
-                sorted_data.append(item)
-            elif item["rarity"] == "super_rare" and super_rare_counter != 0:
-                sorted_data.append(item)
-            elif item["rarity"] == "rare" and rare_counter != 0:
-                sorted_data.append(item)
-            elif item["rarity"] == "common" and common_counter != 0:
-                sorted_data.append(item)
+
 
     return sorted_data
 
-def add_to_inventory(item: dict):
+def add_to_inventory(item_to_add):
     """
     Zapisuje novy item do inventaru
     """
-    with open("cases/inventory.txt", "a") as file:
-        file.write(f"{item['type']},{item['rarity']},{item['amount']}\n")
+    inventory = read_inventory()
+    for item in inventory:
+        if  item_to_add["type"] == item["type"]:
+            item_to_add["amount"] = int(item["amount"]) + 1         
+            inventory.remove(item)
+            inventory.append(item_to_add)
+            break
+    else: 
+        with open("cases/inventory.txt", "a") as file:
+            file.write(f"{item_to_add['type']},{item_to_add['rarity']},{item_to_add['amount']}\n")
+        return
+    with open("cases/inventory.txt", "w") as file:
+        for item in inventory:
+            file.write(f"{item['type']},{item['rarity']},{item['amount']}\n")

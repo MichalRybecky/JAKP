@@ -1,5 +1,5 @@
-berta,legendary,2
-jonas,rare,5
-vrchnak,common,12
-rusko,common,8
-marslakocka,super_rare,3
+jonas,3,5
+rusko,4,8
+marslakocka,2,3
+vrchnak,4,13
+berta,1,3
