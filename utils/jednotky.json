@@ -1,0 +1,106 @@
+{
+    "dlzka":{
+        "mm":{
+            "dlhy_nazov": "milimeter",
+            "nasobok": 0.001
+        },
+        "cm":{
+            "dlhy_nazov": "centimeter",
+            "nasobok": 0.01
+        },
+        "dm":{
+            "dlhy_nazov": "decimeter",
+            "nasobok": 0.1
+        },
+        "m":{
+            "cely_nazov": "meter",
+            "nasobok": 1
+        },
+        "km":{
+            "cely_nazov": "kilometer",
+            "nasobok": 1000
+        },
+        "inch":{
+            "cely_nazov": "palec",
+            "nasobok": 0.0254
+        },
+        "ft":{
+            "cely_nazov": "stopa",
+            "nasobok": 0.3048
+        },
+        "yd":{
+            "cely_nazov": "yard",
+            "nasobok": 0.9144
+        },
+        "mile":{
+            "cely_nazov": "míľa",
+            "nasobok": 1609.344
+        },
+        "nmile":{
+            "cely_nazov": "námorná míľa",
+            "nasobok": 1852
+        },
+        "AU":{
+            "cely_nazov": "astronomická jednotka",
+            "nasobok": 149600000000
+        }
+    },
+    "objem":{
+        "ml":{
+            "dlhy_nazov": "mililiter",
+            "nasobok": 0.000001
+        },
+        "cl":{
+            "dlhy_nazov": "centiliter",
+            "nasobok": 0.00001
+        },
+        "dl":{
+            "dlhy_nazov": "deciliter",
+            "nasobok": 0.0001
+        },
+        "l":{
+            "dlhy_nazov": "liter",
+            "nasobok": 0.001
+        },
+        "hl":{
+            "dlhy_nazov": "hektoliter",
+            "nasobok": 0.1
+        },
+        "mm3":{
+            "dlhy_nazov": "milimeter kubický",
+            "nasobok": 0.000000001
+        },
+        "cm3":{
+            "dlhy_nazov": "centimeter kubický",
+            "nasobok": 0.000001
+        },
+        "dm3":{
+            "dlhy_nazov": "decimeter kubický",
+            "nasobok": 0.001
+        },
+        "m3":{
+            "dlhy_nazov": "meter kubický",
+            "nasobok": 1
+        },
+        "km3":{
+            "dlhy_nazov": "kilometer kubický",
+            "nasobok": 100000000
+        },
+        "gal":{
+            "dlhy_nazov": "galón",
+            "nasobok": 0.003785
+        },
+        "inch3":{
+            "dlhy_nazov": "palec kubický",
+            "nasobok": 0.000016387
+        },
+        "ft3":{
+            "dlhy_nazov": "stopa kubická",
+            "nasobok": 0.02832
+        },
+        "barel":{
+            "dlhy_nazov": "barel",
+            "nasobok": 0.15899
+        }
+    }
+}
