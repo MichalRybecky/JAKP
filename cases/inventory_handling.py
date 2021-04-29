@@ -13,35 +13,14 @@ def read_inventory(sort_type="normal") -> dict:
     with open("cases/inventory.txt", "r") as file:
         for line in file.readlines():
             splitted = line.strip().split(",")
-            data.append({"type": splitted[0], "rarity": splitted[1], "amount": splitted[2]})
+            data.append({"type": splitted[0], "rarity": int(splitted[1]), "amount": int(splitted[2])})
+
     if sort_type == "normal":
         return data
-    sorted_data = []
-    legendary = len([item for item in data if item["rarity"] == "1"])
-    common = len([item for item in data if item["rarity"] == "4"])
-    rare = len([item for item in data if item["rarity"] == "3"])
-    super_rare = len([item for item in data if item["rarity"] == "2"])
 
-    current = ""    
-    if common != 0:
-        current = "common"
-    if rare != 0:
-        current = "rare"
-    if super_rare != 0:
-        current = "super_rare"
-    if legendary != 0:
-        current = "legendary"
+    elif sort_type == "by_rarity":
+        return sorted(data, key=lambda k: k['rarity']) 
 
-    print(current)
-    #while legendary != 0 and super_rare != 0 and rare != 0 and common != 0:
-    #    for item in data:
-    #        if legendary != 0:
-    #            pass
-
-    sorted_data = []
-
-
-    return sorted_data
 
 def add_to_inventory(item_to_add):
     """
