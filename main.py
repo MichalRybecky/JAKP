@@ -18,6 +18,7 @@ from apps.stocks import stocks_app
 from apps.kalkulacka_zivota import kalkulacka_zivota_app
 from apps.kebab import kebab_app
 from apps.vsemocna_kalkulacka import vsemocna_kalkulacka_app
+from apps.case_inv import cases_app_inv
 
 # Meny app importy
 import http.client
@@ -114,7 +115,8 @@ def main():
             elif B_A_SORT.collidepoint(pos_x, pos_y):
                 print("A_SORT")
             elif B_CASE.collidepoint(pos_x, pos_y):
-                print("CASE")
+                cases_app_inv()
+                exit_cooldown = FPS // 3
             elif B_LIFE.collidepoint(pos_x, pos_y):
                 kalkulacka_zivota_app()
                 exit_cooldown = FPS // 3
