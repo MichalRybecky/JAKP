@@ -17,12 +17,27 @@ def read_inventory(sort_type="normal") -> dict:
     if sort_type == "normal":
         return data
     sorted_data = []
-    legendary = len([item for item in data if item["rarity"] == "legendary"])
-    common = len([item for item in data if item["rarity"] == "common"])
-    rare = len([item for item in data if item["rarity"] == "rare"])
-    super_rare = len([item for item in data if item["rarity"] == "super_rare"])
+    legendary = len([item for item in data if item["rarity"] == "1"])
+    common = len([item for item in data if item["rarity"] == "4"])
+    rare = len([item for item in data if item["rarity"] == "3"])
+    super_rare = len([item for item in data if item["rarity"] == "2"])
 
-    current = "legendary"
+    current = ""    
+    if common != 0:
+        current = "common"
+    if rare != 0:
+        current = "rare"
+    if super_rare != 0:
+        current = "super_rare"
+    if legendary != 0:
+        current = "legendary"
+
+    print(current)
+    #while legendary != 0 and super_rare != 0 and rare != 0 and common != 0:
+    #    for item in data:
+    #        if legendary != 0:
+    #            pass
+
     sorted_data = []
 
 
