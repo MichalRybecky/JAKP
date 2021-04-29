@@ -1,0 +1,4 @@
+legendary - 1% na pad rarity 25% na pad individualneho itemu
+super rare - 5% na pad rarity 16,6% na pad individualneho itemu
+rare - 35% na pad rarity 12,5% na pad individualneho itemu
+common - 59% na pad rarity 10% na pad individualneho itemu
