@@ -5,7 +5,6 @@ Hlavny file projektu,
 menu, sluzi na spustanie modulov a submodulov
 """
 import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 
 from settings import *
@@ -19,6 +18,7 @@ from apps.kalkulacka_zivota import kalkulacka_zivota_app
 from apps.kebab import kebab_app
 from apps.vsemocna_kalkulacka import vsemocna_kalkulacka_app
 from apps.case_inv import cases_app_inv
+from apps.abeceda import abeceda_app
 
 # Meny app importy
 import http.client
@@ -28,6 +28,7 @@ import xml.etree.ElementTree as ET
 pygame.init()
 pygame.display.set_caption("JAKP")
 pygame.display.set_icon(ICON)
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 
 def main():
@@ -113,7 +114,8 @@ def main():
                 kebab_app()
                 exit_cooldown = FPS // 3
             elif B_A_SORT.collidepoint(pos_x, pos_y):
-                print("A_SORT")
+                abeceda_app()
+                exit_cooldown = FPS // 3
             elif B_CASE.collidepoint(pos_x, pos_y):
                 cases_app_inv()
                 exit_cooldown = FPS // 3
