@@ -3,3 +3,4 @@ __pycache__/
 test.py
 .vscode/
 user_settings.txt
+inventory.txt
