@@ -74,8 +74,8 @@ def kalkulacka_zivota_app():
         # LABELS
         if result != {}:
             if type(result) == str:
-                label_result = SMALL_FONT.render(result, 1, FONT_COLOR)
-                WIN.blit(label_result, (40, HEIGHT_H + 140))
+                label_result = MAIN_FONT.render(result, 1, FONT_COLOR)
+                WIN.blit(label_result, (130, HEIGHT_H + 80))
             else:
                 label_years = MAIN_FONT.render(f'Years: {str(result["years"])}', 1, FONT_COLOR)
                 label_months = MAIN_FONT.render(f'Months: {str(result["months"])}', 1, FONT_COLOR)
@@ -89,7 +89,7 @@ def kalkulacka_zivota_app():
 
                 y_diff = 0
                 for label in to_blit:
-                    WIN.blit(label, (150, HEIGHT_H - 50 + y_diff))
+                    WIN.blit(label, (100, HEIGHT_H - 50 + y_diff))
                     y_diff += 40
 
             
