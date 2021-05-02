@@ -35,7 +35,7 @@ def add_to_inventory(item_to_add):
             break
     else: 
         with open("cases/inventory.txt", "a") as file:
-            file.write(f"{item_to_add['name']},{item_to_add['rarity']},{item_to_add['amount']}\n")
+            file.write(f"{item_to_add['name']},{item_to_add['rarity']},1\n")
         return
     with open("cases/inventory.txt", "w") as file:
         for item in inventory:
