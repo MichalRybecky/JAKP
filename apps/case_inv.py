@@ -6,18 +6,17 @@ from utils.load_assets import (
     BG_CASEKY_INV_D,
     BIG_FONT,
     MAIN_FONT,
-    SMALL_FONT,
     BACK,
     MENU,
     FONT_COLOR_L,
     FONT_COLOR_D,
 )
-from settings import UI_COLOR, WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from settings import WIN, WIDTH, WIDTH_H, FPS
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 
 from apps.case_opening_menu import cases_app_opening
-from cases.inventory_handling import read_inventory, add_to_inventory
+from cases.inventory_handling import read_inventory
 from cases.load_items import COUNTER
 from cases.icon_list import icon_list
 
