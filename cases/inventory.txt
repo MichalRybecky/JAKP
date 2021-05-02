@@ -1,4 +1,0 @@
-berta,1,3
-birdhouse,2,5
-eraser,4,1
-face_mask,4,9
