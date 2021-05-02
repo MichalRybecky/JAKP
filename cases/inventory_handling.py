@@ -1,6 +1,6 @@
 def read_inventory(sort_type="normal") -> dict:
     """
-    Vracia dictionary itemov v inventory.txt vo forme type, rarity, amount
+    Vracia dictionary itemov v inventory.txt vo forme name, rarity, amount
     kde type je nazov itemu (str), rarity je int hodnota rarity:
         1 = legendary,
         2 = super rare,
@@ -13,7 +13,7 @@ def read_inventory(sort_type="normal") -> dict:
     with open("cases/inventory.txt", "r") as file:
         for line in file.readlines():
             splitted = line.strip().split(",")
-            data.append({"type": splitted[0], "rarity": int(splitted[1]), "amount": int(splitted[2])})
+            data.append({"name": splitted[0], "rarity": int(splitted[1]), "amount": int(splitted[2])})
 
     if sort_type == "normal":
         return data
@@ -28,15 +28,15 @@ def add_to_inventory(item_to_add):
     """
     inventory = read_inventory()
     for item in inventory:
-        if  item_to_add["type"] == item["type"]:
+        if  item_to_add["name"] == item["name"]:
             item_to_add["amount"] = int(item["amount"]) + 1         
             inventory.remove(item)
             inventory.append(item_to_add)
             break
     else: 
         with open("cases/inventory.txt", "a") as file:
-            file.write(f"{item_to_add['type']},{item_to_add['rarity']},{item_to_add['amount']}\n")
+            file.write(f"{item_to_add['name']},{item_to_add['rarity']},{item_to_add['amount']}\n")
         return
     with open("cases/inventory.txt", "w") as file:
         for item in inventory:
-            file.write(f"{item['type']},{item['rarity']},{item['amount']}\n")
+            file.write(f"{item['name']},{item['rarity']},{item['amount']}\n")

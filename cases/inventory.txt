@@ -1,5 +1,4 @@
-jonas,3,5
-rusko,4,8
-marslakocka,2,3
-vrchnak,4,13
 berta,1,3
+birdhouse,2,5
+eraser,4,1
+face_mask,4,9

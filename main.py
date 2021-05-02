@@ -7,7 +7,7 @@ menu, sluzi na spustanie modulov a submodulov
 import os
 import pygame
 
-import utils.create_user_settings
+import utils.create_user_files
 from settings import *
 from utils.load_assets import *
 from utils.connectivity import internet as connection_check
