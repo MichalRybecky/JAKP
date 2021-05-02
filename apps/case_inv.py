@@ -44,9 +44,9 @@ def blit_items(items: list):
         if item['rarity'] == 4:
             item_bg = C_BG
         elif item['rarity'] == 3:
-            item_bg = SR_BG
-        elif item['rarity'] == 2:
             item_bg = R_BG
+        elif item['rarity'] == 2:
+            item_bg = SR_BG
         else:
             item_bg = LEG_BG
         WIN.blit(item_bg, (x-5, y))
