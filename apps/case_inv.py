@@ -15,14 +15,25 @@ from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 
 from apps.case_opening_menu import cases_app_opening
+from cases.inventory_handling import read_inventory, add_to_inventory
+from cases.icon_list import icon_list
 
 
-def inv_forward():
-    print("este tez nejdze")
+def blit_items(items: list):
+    """
+    Blitne itemy do ich policok na backgrounde podla poradia
+    """
+    if len(items) > 12:
+        raise Exception("Privela itemov na screen, maximalny pocet je 12")
 
-
-def inv_back():
-    print("este nejdze")
+    diff = 0
+    for item in items:
+        for icon_name in icon_list:
+            if item['name'] == icon_name['name']:
+                icon = icon_name['icon']
+                break
+        WIN.blit(icon, (50, 300 + diff))
+        diff += 145
 
 
 def cases_app_inv():
@@ -33,6 +44,7 @@ def cases_app_inv():
     click = False
     clock = pygame.time.Clock()
 
+    current_subinv = 1
     cooldown = 0
 
     # BUTTON INITIALIZATION
@@ -58,6 +70,10 @@ def cases_app_inv():
             (WIDTH_H - 60, 120),
         )
 
+        # Blitovanie itemov na screen podla subinventaru
+        blit_items(read_inventory("by_rarity"))
+
+
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
             if B_BACK.collidepoint(pos_x, pos_y) and not cooldown:
@@ -66,10 +82,11 @@ def cases_app_inv():
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
             elif B_INV_FORWARD.collidepoint(pos_x, pos_y) and not cooldown:
-                inv_forward()
+                # TODO: maximalny pocet subinventarov
+                current_subinv = current_subinv + 1 if current_subinv < 5 else current_subinv
                 cooldown = FPS // 3
             elif B_INV_BACK.collidepoint(pos_x, pos_y) and not cooldown:
-                inv_back()
+                current_subinv = current_subinv - 1 if current_subinv > 1 else current_subinv
                 cooldown = FPS // 3
             elif B_OPENING.collidepoint(pos_x, pos_y) and not cooldown:
                 cases_app_opening()
