@@ -6,13 +6,9 @@ import os
 import pygame
 
 
-#from settings import ICON_SIZE
-ICON_SIZE = 110
-
+from settings import ICON_SIZE
 
 pygame.init()
-
-
 
 path = "assets/items/"
 CASE_LOADING = pygame.image.load(os.path.join(path, "loading.png"))
@@ -23,6 +19,16 @@ CLASS_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "class_collection_o
 CLASS_COLLECTION_OPEN = pygame.transform.scale(CLASS_COLLECTION_OPEN, (500, 900))
 TRIP_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "trip_collection_open.png"))
 TRIP_COLLECTION_OPEN = pygame.transform.scale(TRIP_COLLECTION_OPEN, (500, 900))
+
+bgsize = 120
+LEG_BG = pygame.image.load(os.path.join(path, "leg_bg.png"))
+LEG_BG = pygame.transform.scale(LEG_BG, (bgsize, bgsize))
+SR_BG = pygame.image.load(os.path.join(path, "sr_bg.png"))
+SR_BG = pygame.transform.scale(SR_BG, (bgsize, bgsize))
+R_BG = pygame.image.load(os.path.join(path, "r_bg.png"))
+R_BG = pygame.transform.scale(R_BG, (bgsize, bgsize))
+C_BG = pygame.image.load(os.path.join(path, "c_bg.png"))
+C_BG = pygame.transform.scale(C_BG, (bgsize, bgsize))
 
 path = "assets/items/otvorene_casy/"
 CLASS_OPEN_C = pygame.image.load(os.path.join(path, "class_open_c.png"))
@@ -41,7 +47,7 @@ TRIP_OPEN_L = pygame.transform.scale(TRIP_OPEN_L, (500, 900))
 TRIP_OPEN_R = pygame.image.load(os.path.join(path, "trip_open_r.png"))
 TRIP_OPEN_R = pygame.transform.scale(TRIP_OPEN_R, (500, 900))
 TRIP_OPEN_SR = pygame.image.load(os.path.join(path, "trip_open_sr.png"))
-TRIP_OPEN_SR = pygame.transform.scale(TRIP_OPEN_SR, (500, 900))
+TRIP_OPEN_SR = pygame.transform.scale(TRIP_OPEN_SR, (500, 350))
 
 
 # Class Collection

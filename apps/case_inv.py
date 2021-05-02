@@ -17,7 +17,7 @@ from apps.settings_menu import settings_menu
 
 from apps.case_opening_menu import cases_app_opening
 from cases.inventory_handling import read_inventory
-from cases.load_items import COUNTER
+from cases.load_items import COUNTER, LEG_BG, SR_BG, R_BG, C_BG
 from cases.icon_list import icon_list
 
 
@@ -39,8 +39,17 @@ def blit_items(items: list):
     for item in items:
         for icon_name in icon_list:
             if item['name'] == icon_name['name']:
-                icon = icon_name['icon']
+                icon = icon_name['icon'] 
                 break
+        if item['rarity'] == 4:
+            item_bg = C_BG
+        elif item['rarity'] == 3:
+            item_bg = SR_BG
+        elif item['rarity'] == 2:
+            item_bg = R_BG
+        else:
+            item_bg = LEG_BG
+        WIN.blit(item_bg, (x-5, y))
         WIN.blit(icon, (x, y))
         WIN.blit(COUNTER, (x + 70, y + 75)) 
         label_amount = MAIN_FONT.render(str(item['amount']), 1, (10, 10, 10))
