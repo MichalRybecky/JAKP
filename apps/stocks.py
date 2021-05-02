@@ -5,6 +5,7 @@ from utils.load_assets import (
     BG_STOCKS_L,
     BG_STOCKS_D,
     BIG_FONT,
+    MAIN_FONT,
     BACK,
     MENU,
     FONT_COLOR_L,
@@ -77,11 +78,18 @@ def stocks_app():
         WIN.blit(label_return, (WIDTH_H - (label_return.get_width() // 2), 395))
 
         if result != 0.0:
-            label_price = BIG_FONT.render(result, 1, FONT_COLOR)
-            WIN.blit(
-                label_price,
-                (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 60),
-            )
+            if result == "Empty string" or result == "Unknown symbol":
+                label_price = MAIN_FONT.render(result, 1, FONT_COLOR)
+                WIN.blit(
+                    label_price,
+                    (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 65),
+                )
+            else:
+                label_price = BIG_FONT.render(result, 1, FONT_COLOR)
+                WIN.blit(
+                    label_price,
+                    (WIDTH_H - (label_price.get_width() // 2), HEIGHT_H + 60),
+                )
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
