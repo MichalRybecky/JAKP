@@ -4,3 +4,4 @@ test.py
 .vscode/
 user_settings.txt
 inventory.txt
+inventory.txt.bak
