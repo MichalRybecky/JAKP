@@ -7,10 +7,12 @@ menu, sluzi na spustanie modulov a submodulov
 import os
 import pygame
 
+import utils.create_user_settings
 from settings import *
 from utils.load_assets import *
 from utils.connectivity import internet as connection_check
 from utils.user_settings_handling import return_user_settings
+
 from apps.settings_menu import settings_menu
 from apps.meny import meny_app
 from apps.stocks import stocks_app
