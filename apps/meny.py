@@ -5,6 +5,7 @@ from utils.load_assets import (
     BG_MENY_L,
     BG_MENY_D,
     BIG_FONT,
+    MAIN_FONT,
     BACK,
     MENU,
     FONT_COLOR_L,
@@ -18,11 +19,16 @@ from utils.premeny_mien import from_eur, from_xyz
 
 
 def convert(rates, cur_amount, cur_from, cur_to):
+    try:
+        result = float(cur_amount.get_text())
+    except ValueError:
+        return "Incorrect format"
+
     if cur_from.get_text().lower() == "eur":
-        result = from_eur(rates[cur_to.get_text().upper()], int(cur_amount.get_text()))
+        result = from_eur(rates[cur_to.get_text().upper()], float(cur_amount.get_text()))
     else:
         result = from_xyz(
-            rates[cur_from.get_text().upper()], int(cur_amount.get_text())
+            rates[cur_from.get_text().upper()], float(cur_amount.get_text())
         )
     return result
 
@@ -121,8 +127,12 @@ def meny_app(rates):
         label_konvertuj = BIG_FONT.render("Convert", 1, FONT_COLOR)
         WIN.blit(label_konvertuj, (100, HEIGHT_H + 75))
         if result != 0.0:
-            label_result = BIG_FONT.render(str(result), 1, FONT_COLOR)
-            WIN.blit(label_result, (200 - len(str(result)) * 12, 400))
+            if type(result) == str:
+                label_result = MAIN_FONT.render(str(result), 1, FONT_COLOR)
+                WIN.blit(label_result, (80, 410))
+            else:
+                label_result = BIG_FONT.render(str(result), 1, FONT_COLOR)
+                WIN.blit(label_result, (200 - len(str(result)) * 12, 400))
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
