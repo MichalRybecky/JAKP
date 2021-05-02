@@ -5,6 +5,8 @@ from utils.load_assets import (
     BG_CASEKY_INV_L,
     BG_CASEKY_INV_D,
     BIG_FONT,
+    MAIN_FONT,
+    SMALL_FONT,
     BACK,
     MENU,
     FONT_COLOR_L,
@@ -16,7 +18,12 @@ from apps.settings_menu import settings_menu
 
 from apps.case_opening_menu import cases_app_opening
 from cases.inventory_handling import read_inventory, add_to_inventory
+from cases.load_items import COUNTER
 from cases.icon_list import icon_list
+
+
+def get_current_items(items: list, current_subinv: int):
+    return items[current_subinv*12:current_subinv*12+12]
 
 
 def blit_items(items: list):
@@ -26,15 +33,23 @@ def blit_items(items: list):
     if len(items) > 12:
         raise Exception("Privela itemov na screen, maximalny pocet je 12")
 
-    diff = 0
+    x = 50
+    y = 300
+    x_diff = 145
+    y_diff = 145
     for item in items:
         for icon_name in icon_list:
             if item['name'] == icon_name['name']:
                 icon = icon_name['icon']
                 break
-        WIN.blit(icon, (50, 300 + diff))
-        diff += 145
-
+        WIN.blit(icon, (x, y))
+        WIN.blit(COUNTER, (x + 70, y + 75)) 
+        label_amount = MAIN_FONT.render(str(item['amount']), 1, (10, 10, 10))
+        WIN.blit(label_amount, (x + 83, y + 82))
+        x += x_diff
+        if x > 450:
+            x = 50
+            y += y_diff
 
 def cases_app_inv():
     """
@@ -44,7 +59,7 @@ def cases_app_inv():
     click = False
     clock = pygame.time.Clock()
 
-    current_subinv = 1
+    current_subinv = 0
     cooldown = 0
 
     # BUTTON INITIALIZATION
@@ -70,8 +85,8 @@ def cases_app_inv():
             (WIDTH_H - 60, 120),
         )
 
-        # Blitovanie itemov na screen podla subinventaru
-        blit_items(read_inventory("by_rarity"))
+        current_items = get_current_items(read_inventory("by_rarity"), current_subinv)
+        blit_items(current_items)
 
 
         # Zistovanie, ci nebolo kliknute na textove pole
@@ -86,7 +101,7 @@ def cases_app_inv():
                 current_subinv = current_subinv + 1 if current_subinv < 5 else current_subinv
                 cooldown = FPS // 3
             elif B_INV_BACK.collidepoint(pos_x, pos_y) and not cooldown:
-                current_subinv = current_subinv - 1 if current_subinv > 1 else current_subinv
+                current_subinv = current_subinv - 1 if current_subinv > 0 else current_subinv
                 cooldown = FPS // 3
             elif B_OPENING.collidepoint(pos_x, pos_y) and not cooldown:
                 cases_app_opening()
