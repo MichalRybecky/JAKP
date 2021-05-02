@@ -12,8 +12,37 @@ ICON_SIZE = 110
 
 pygame.init()
 
-COUNTER = pygame.image.load(os.path.join("assets/items/", "counter.png"))
+
+
+path = "assets/items/"
+CASE_LOADING = pygame.image.load(os.path.join(path, "loading.png"))
+CASE_LOADING = pygame.transform.scale(CASE_LOADING, (400, 190))
+COUNTER = pygame.image.load(os.path.join(path, "counter.png"))
 COUNTER = pygame.transform.scale(COUNTER, (40, 40))
+CLASS_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "class_collection_open.png"))
+CLASS_COLLECTION_OPEN = pygame.transform.scale(CLASS_COLLECTION_OPEN, (500, 900))
+TRIP_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "trip_collection_open.png"))
+TRIP_COLLECTION_OPEN = pygame.transform.scale(TRIP_COLLECTION_OPEN, (500, 900))
+
+path = "assets/items/otvorene_casy/"
+CLASS_OPEN_C = pygame.image.load(os.path.join(path, "class_open_c.png"))
+CLASS_OPEN_C = pygame.transform.scale(CLASS_OPEN_C, (500, 900))
+CLASS_OPEN_L = pygame.image.load(os.path.join(path, "class_open_l.png"))
+CLASS_OPEN_L = pygame.transform.scale(CLASS_OPEN_L, (500, 900))
+CLASS_OPEN_R = pygame.image.load(os.path.join(path, "class_open_r.png"))
+CLASS_OPEN_R = pygame.transform.scale(CLASS_OPEN_R, (500, 900))
+CLASS_OPEN_SR = pygame.image.load(os.path.join(path, "class_open_sr.png"))
+CLASS_OPEN_SR = pygame.transform.scale(CLASS_OPEN_SR, (500, 900))
+
+TRIP_OPEN_C = pygame.image.load(os.path.join(path, "trip_open_c.png"))
+TRIP_OPEN_C = pygame.transform.scale(TRIP_OPEN_C, (500, 900))
+TRIP_OPEN_L = pygame.image.load(os.path.join(path, "trip_open_l.png"))
+TRIP_OPEN_L = pygame.transform.scale(TRIP_OPEN_L, (500, 900))
+TRIP_OPEN_R = pygame.image.load(os.path.join(path, "trip_open_r.png"))
+TRIP_OPEN_R = pygame.transform.scale(TRIP_OPEN_R, (500, 900))
+TRIP_OPEN_SR = pygame.image.load(os.path.join(path, "trip_open_sr.png"))
+TRIP_OPEN_SR = pygame.transform.scale(TRIP_OPEN_SR, (500, 900))
+
 
 # Class Collection
 path = "assets/items/class_collection"
