@@ -125,7 +125,7 @@ def meny_app(rates):
 
         # LABELS
         label_konvertuj = BIG_FONT.render("Convert", 1, FONT_COLOR)
-        WIN.blit(label_konvertuj, (100, HEIGHT_H + 75))
+        WIN.blit(label_konvertuj, (100, HEIGHT_H + 70))
         if result != 0.0:
             if type(result) == str:
                 label_result = MAIN_FONT.render(str(result), 1, FONT_COLOR)
