@@ -5,11 +5,15 @@ Module na loadovanie itemov pre case appku
 import os
 import pygame
 
+
 #from settings import ICON_SIZE
 ICON_SIZE = 110
 
 
 pygame.init()
+
+COUNTER = pygame.image.load(os.path.join("assets/items/", "counter.png"))
+COUNTER = pygame.transform.scale(COUNTER, (40, 40))
 
 # Class Collection
 path = "assets/items/class_collection"
