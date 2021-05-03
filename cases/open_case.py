@@ -12,7 +12,9 @@ def open_case(case_type):
     from cases.icon_list import icon_list
 
     drop = random.randint(1, 100)
-    if  1 < drop <= 6:
+    if drop == 1:
+        drop = 1
+    elif drop <= 6:
         drop = 2
     elif drop <= 41:
         drop = 3 
