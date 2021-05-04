@@ -86,13 +86,11 @@ def cases_app_inv():
         WIN.blit(BG, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
+        WIN.blit(COUNTER, (35, 240)) 
 
         # LABELS
-        label_caseky = BIG_FONT.render("Caseky", 1, FONT_COLOR)
-        WIN.blit(
-            label_caseky,
-            (WIDTH_H - 60, 120),
-        )
+        label_subinv = MAIN_FONT.render(str(current_subinv + 1), 1, FONT_COLOR)
+        WIN.blit(label_subinv, (47, 247))
 
         current_items = get_current_items(read_inventory("by_rarity"), current_subinv)
         blit_items(current_items)
