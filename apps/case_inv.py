@@ -52,8 +52,9 @@ def blit_items(items: list):
         WIN.blit(item_bg, (x-5, y))
         WIN.blit(icon, (x, y))
         WIN.blit(COUNTER, (x + 70, y + 75)) 
-        label_amount = MAIN_FONT.render(str(item['amount']), 1, (10, 10, 10))
-        WIN.blit(label_amount, (x + 83, y + 82))
+        amount_to_display = str(item['amount']) if item['amount'] < 100 else "99"
+        label_amount = MAIN_FONT.render(str(amount_to_display), 1, (10, 10, 10))
+        WIN.blit(label_amount, (x + 90 - label_amount.get_width() // 2, y + 82))
         x += x_diff
         if x > 450:
             x = 50
