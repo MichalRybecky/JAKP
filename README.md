@@ -23,10 +23,6 @@
 		* kvadratická rovnica
 	* Abecedný zoraďovač
 	* Prevodník číselných sústav
-	* Otváranie SSDLS loot boxov
-		* točenie itemov
-		* inventár v CSV súbore
-		* možnosť zobraziť inventár
 
 ### IDEAS list
 * zmena jazyka medzi svk/eng
