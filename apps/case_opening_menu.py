@@ -5,6 +5,7 @@ from utils.load_assets import (
     BG_CASEKY_VOLBA_L,
     BG_CASEKY_VOLBA_D,
     BIG_FONT,
+    MAIN_FONT,
     BACK,
     MENU,
     FONT_COLOR_L,
@@ -47,11 +48,10 @@ def cases_app_opening():
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
 
         # LABELS
-        #label_caseky = BIG_FONT.render("Caseky", 1, FONT_COLOR)
-        #WIN.blit(
-        #    label_caseky,
-        #    (WIDTH_H - 60, 120),
-        #)
+        label_trip_col = MAIN_FONT.render("Trip Collection", 1, FONT_COLOR)
+        WIN.blit(label_trip_col, (WIDTH_H - 75, 205))
+        label_class_col = MAIN_FONT.render("Class Collection", 1, FONT_COLOR)
+        WIN.blit(label_class_col, (WIDTH_H - 75, 465))
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click and cooldown == 0:
