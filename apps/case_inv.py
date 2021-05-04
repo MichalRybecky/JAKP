@@ -91,6 +91,8 @@ def cases_app_inv():
         # LABELS
         label_subinv = MAIN_FONT.render(str(current_subinv + 1), 1, FONT_COLOR)
         WIN.blit(label_subinv, (47, 247))
+        label_case_opening = BIG_FONT.render("Case opening", 1, FONT_COLOR)
+        WIN.blit(label_case_opening, (130, 120))
 
         current_items = get_current_items(read_inventory("by_rarity"), current_subinv)
         blit_items(current_items)
@@ -104,8 +106,7 @@ def cases_app_inv():
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
             elif B_INV_FORWARD.collidepoint(pos_x, pos_y) and not cooldown:
-                # TODO: maximalny pocet subinventarov
-                current_subinv = current_subinv + 1 if current_subinv < 5 else current_subinv
+                current_subinv = current_subinv + 1 if current_subinv < 4 else current_subinv
                 cooldown = FPS // 3
             elif B_INV_BACK.collidepoint(pos_x, pos_y) and not cooldown:
                 current_subinv = current_subinv - 1 if current_subinv > 0 else current_subinv
