@@ -4,6 +4,7 @@ JAKP
 Hlavny file projektu,
 menu, sluzi na spustanie modulov a submodulov
 """
+
 import os
 import pygame
 
@@ -13,6 +14,7 @@ from utils.load_assets import *
 from utils.connectivity import internet as connection_check
 from utils.user_settings_handling import return_user_settings
 
+# Apps
 from apps.settings_menu import settings_menu
 from apps.meny import meny_app
 from apps.stocks import stocks_app
@@ -31,9 +33,10 @@ import xml.etree.ElementTree as ET
 pygame.init()
 pygame.display.set_caption("JAKP")
 pygame.display.set_icon(ICON)
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 
-def return_conversion_list(): 
+
+def return_conversion_list():
     conn = http.client.HTTPSConnection("www.ecb.europa.eu")
     conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
     res = conn.getresponse()
@@ -45,13 +48,13 @@ def return_conversion_list():
         rates.update({entry["currency"]: float(entry["rate"])})
     return rates
 
+
 def main():
     run = True
     click = False
     exit_cooldown = 0
     no_internet_label_cooldown = 0
     clock = pygame.time.Clock()
-
 
     user_settings = return_user_settings()
     if user_settings["theme"] == "light":
@@ -75,20 +78,38 @@ def main():
         label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
         label_reconnect = MAIN_FONT.render("Reconnect", 1, FONT_COLOR)
 
-    # BUTTONS INITIALIZATION
-    B_KEBAB = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
-    B_A_SORT = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE)
-    B_CASE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-    B_LIFE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-    B_MATHE = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
-    B_CALCUL = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE)
-    B_MENY = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
-    B_STOCKS = pygame.Rect((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE)
+    # BUTTONS
+    B_KEBAB = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE
+    )
+    B_A_SORT = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3, ICON_SIZE, ICON_SIZE
+    )
+    B_CASE = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE
+    )
+    B_LIFE = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H - ICON_SIZE, ICON_SIZE, ICON_SIZE
+    )
+    B_MATHE = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H + ICON_SIZE - 30, ICON_SIZE, ICON_SIZE
+    )
+    B_CALCUL = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2 * 3,
+        HEIGHT_H + ICON_SIZE - 30,
+        ICON_SIZE,
+        ICON_SIZE,
+    )
+    B_MENY = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE
+    )
+    B_STOCKS = pygame.Rect(
+        (WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40, ICON_SIZE, ICON_SIZE
+    )
     B_X = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 60 - 20, 20, 60, 60)
 
-
-    # main app loop
+    # zaciatok main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         BG = BG_L if user_settings["theme"] == "light" else BG_D
@@ -98,7 +119,7 @@ def main():
             WIN.blit(BUTTON, (WIDTH_H - 80, 30))
             WIN.blit(label_reconnect, (WIDTH_H - 60, 40))
 
-        # BLITING ICONS
+        # Blitovanie app icons
         WIN.blit(KEBAB, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H // 3))
         WIN.blit(A_SORT, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H // 3))
         WIN.blit(CASE, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H - ICON_SIZE))
@@ -113,38 +134,32 @@ def main():
             WIN.blit(STOCKS, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
         else:
             WIN.blit(MENY_M, ((WIDTH_H - ICON_SIZE_H) // 2, HEIGHT_H * 3 // 2 + 40))
-            WIN.blit(STOCKS_M, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40))
+            WIN.blit(
+                STOCKS_M, ((WIDTH_H - ICON_SIZE_H) // 2 * 3, HEIGHT_H * 3 // 2 + 40)
+            )
 
         # Button Activations
         if click:
             if B_KEBAB.collidepoint(pos_x, pos_y):
                 kebab_app()
-                exit_cooldown = FPS // 3
             elif B_A_SORT.collidepoint(pos_x, pos_y):
                 abeceda_app()
-                exit_cooldown = FPS // 3
             elif B_CASE.collidepoint(pos_x, pos_y):
                 cases_app_inv()
-                exit_cooldown = FPS // 3
             elif B_LIFE.collidepoint(pos_x, pos_y):
                 kalkulacka_zivota_app()
-                exit_cooldown = FPS // 3
             elif B_MATHE.collidepoint(pos_x, pos_y):
                 vsemocna_kalkulacka_app()
-                exit_cooldown = FPS // 3
             elif B_CALCUL.collidepoint(pos_x, pos_y):
                 kalkulacka_app()
-                exit_cooldown = FPS // 3
             elif B_MENY.collidepoint(pos_x, pos_y):
                 if internet:
                     meny_app(rates)
-                    exit_cooldown = FPS // 3
                 else:
                     no_internet_label_cooldown = 180
             elif B_STOCKS.collidepoint(pos_x, pos_y):
                 if internet:
                     stocks_app()
-                    exit_cooldown = FPS // 3
                 else:
                     no_internet_label_cooldown = 180
             elif B_MENU.collidepoint(pos_x, pos_y):
@@ -157,6 +172,7 @@ def main():
                     internet = connection_check()
                 if internet:
                     rates = return_conversion_list()
+            exit_cooldown = FPS // 4
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -170,7 +186,7 @@ def main():
                 if event.button == 1:
                     click = False
 
-        # exit_cooldown preventuje exit po double clicku na back button z jednotlivych appiek
+        # exit_cooldown preventuje exit po clicknuti na back button z jednotlivych appiek
         if exit_cooldown > 0:
             exit_cooldown -= 1
 
