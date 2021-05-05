@@ -21,6 +21,7 @@ from apps.kebab import kebab_app
 from apps.vsemocna_kalkulacka import vsemocna_kalkulacka_app
 from apps.case_inv import cases_app_inv
 from apps.abeceda import abeceda_app
+from apps.kalkulacka import kalkulacka_app
 
 # Meny app importy
 import http.client
@@ -128,7 +129,8 @@ def main():
                 vsemocna_kalkulacka_app()
                 exit_cooldown = FPS // 3
             elif B_CALCUL.collidepoint(pos_x, pos_y):
-                print("CALCUL")
+                kalkulacka_app()
+                exit_cooldown = FPS // 3
             elif B_MENY.collidepoint(pos_x, pos_y):
                 if internet:
                     meny_app(rates)
