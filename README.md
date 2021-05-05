@@ -1,29 +1,40 @@
-## JAKP - Jediná Aplikácia, Ktorú Potrebujete
+# JAKP - Jediná aplikácia, ktorú potrebuješ
+
+![Project Image](https://user-images.githubusercontent.com/56262573/117182332-bb737280-adc5-11eb-9a27-b1465c2bc86b.jpg)
+
+---
+
+### Kontent
+- [Popis](#popis)
+- [Dependencies](#dependencies)
+- [Ako na to](#ako-na-to)
+- [Autori](#autori)
+
+---
+
+### Popis
+
+Creating ReadMe's for your Github repository can be tedious.  I hope this template can save you time and effort as well as provide you with some consistency across your projects.
+
+---
 
 ### Dependencies
-`python3` <br />
-`pygame` - `pip3 install pygame` <br />
 
-### File layout
-`assets/` - priečinok pre grafické mecheche, obsahuje všetky potrebné ikonky, obrázky a zvuky <br />
-`apps/` - priečinok pre samostatné aplikácie, ktoré sa dajú otvárať <br />
-`utils/` - priečinok pre tooly a funkcie, ktoré nám spracúvajú dáta z aplikácií <br />
-`.gitignore` - súbory, ktoré nechceme trackovať, teda nechceme ich pushovať do spoločného repository <br />
-`main.py` - hlavný python súbor projektu, má za úlohu spúšťanie všetkých modulov a submodulov <br />
-`user_settings.txt` - textový súbor pre zapisovanie použivateľských nastavení <br />
-`settings.py` - textový súbor pre zapisovanie developerských nastavení <br />
+- `python3`
+- `pygame` - `pip3 install pygame`
 
-### TODO list
-* Funkcionalita:
-	* Matematicka kalkulačka
-		* objemy, obsahy
-		* premena jednotiek
-		* štatistické výpočty
-		* finančná matematika
-		* kvadratická rovnica
-	* Abecedný zoraďovač
-	* Prevodník číselných sústav
+---
 
-### IDEAS list
-* zmena jazyka medzi svk/eng
-* credits a odkaz/bug report do settings menu
+### Ako na to
+1. Uistiť sa, že mám nainštalované programy a package z [dependencies](#dependencies). 
+2. Naklonovať si repozitár pomocou `git clone https://github.com/MichalRybecky/JAKP.git` do preferovaného priečinka.
+3. Spustiť program cez terminál príkazom `python3 main.py`
+
+---
+
+### Autori
+
+- Michal Rybecký - [@MichalRybecky](https://github.com/MichalRybecky)
+- Samuel Taufer
+- Maximilián Martin Kéfas Krošlák
+- Ondrej Babík
