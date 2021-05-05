@@ -169,8 +169,12 @@ def main():
                 run = False
             if not internet:
                 if B_RECONNECT.collidepoint(pos_x, pos_y):
+                    label_reconnecting = BIG_FONT.render("Reconnecting...", 1, (0, 0, 255))
+                    WIN.blit(label_reconnecting, (WIDTH_H - 120, 100))
+                    pygame.display.update()
                     internet = connection_check()
                 if internet:
+                    no_internet_label_cooldown = 0
                     rates = return_conversion_list()
             exit_cooldown = FPS // 4
 
