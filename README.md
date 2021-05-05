@@ -6,6 +6,7 @@
 
 ### Kontent
 - [Popis](#popis)
+- [Vlastnosti](#vlastnosti)
 - [Dependencies](#dependencies)
 - [Ako na to](#ako-na-to)
 - [Autori](#autori)
@@ -15,6 +16,13 @@
 ### Popis
 
 Creating ReadMe's for your Github repository can be tedious.  I hope this template can save you time and effort as well as provide you with some consistency across your projects.
+
+---
+
+### Vlastnosti
+
+- Dark mode po celej aplikácií
+- Vždy najaktuálnejšie hodnoty pre konverziu mien či akcií na [trhu](trhu.md)
 
 ---
 
