@@ -35,6 +35,12 @@ def case_opening_app(case_type: str):
 
     dropped_item = {}
 
+    def opening_cooldown():
+        for _ in range(20):
+            WIN.blit(OPENING, (0, 0))
+            pygame.display.update()
+            clock.tick(FPS)
+
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
@@ -92,6 +98,7 @@ def case_opening_app(case_type: str):
             elif B_OPEN.collidepoint(pos_x, pos_y) and dropped_item == {}:
                 dropped_item = open_case(case_type)
                 add_to_inventory(dropped_item)
+                opening_cooldown()
 
         # Event handling
         events = pygame.event.get()
