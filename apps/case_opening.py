@@ -11,7 +11,7 @@ from utils.load_assets import (
     FONT_COLOR_D,
 )
 from cases.load_items import *
-from settings import UI_COLOR, WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
+from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
 

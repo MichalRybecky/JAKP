@@ -19,6 +19,8 @@ CLASS_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "class_collection_o
 CLASS_COLLECTION_OPEN = pygame.transform.scale(CLASS_COLLECTION_OPEN, (500, 900))
 TRIP_COLLECTION_OPEN = pygame.image.load(os.path.join(path, "trip_collection_open.png"))
 TRIP_COLLECTION_OPEN = pygame.transform.scale(TRIP_COLLECTION_OPEN, (500, 900))
+OPENING = pygame.image.load(os.path.join(path, "loading.png"))
+OPENING = pygame.transform.scale(OPENING, (500, 900))
 
 bgsize = 120
 LEG_BG = pygame.image.load(os.path.join(path, "leg_bg.png"))
