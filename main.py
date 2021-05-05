@@ -33,6 +33,17 @@ pygame.display.set_caption("JAKP")
 pygame.display.set_icon(ICON)
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
+def return_conversion_list(): 
+    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
+    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
+    res = conn.getresponse()
+    data = res.read()
+    root = ET.fromstring(data)
+    rates = {}
+    for i in root[2][0]:
+        entry = i.attrib
+        rates.update({entry["currency"]: float(entry["rate"])})
+    return rates
 
 def main():
     run = True
@@ -40,6 +51,8 @@ def main():
     exit_cooldown = 0
     no_internet_label_cooldown = 0
     clock = pygame.time.Clock()
+
+
     user_settings = return_user_settings()
     if user_settings["theme"] == "light":
         BG = BG_L
@@ -56,15 +69,7 @@ def main():
     # Miesto pre robenie connections pre appky ktore to potrebuju
     internet = connection_check()
     if internet:
-        conn = http.client.HTTPSConnection("www.ecb.europa.eu")
-        conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
-        res = conn.getresponse()
-        data = res.read()
-        root = ET.fromstring(data)
-        rates = {}
-        for i in root[2][0]:
-            entry = i.attrib
-            rates.update({entry["currency"]: float(entry["rate"])})
+        rates = return_conversion_list()
     else:
         B_RECONNECT = pygame.Rect(WIDTH_H - 80, 30, 160, 50)
         label_no_internet = BIG_FONT.render("No internet connection", 1, (255, 0, 0))
@@ -86,7 +91,6 @@ def main():
     # main app loop
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
-        user_settings = return_user_settings()
         BG = BG_L if user_settings["theme"] == "light" else BG_D
         WIN.blit(BG, (0, 0))
 
@@ -145,21 +149,14 @@ def main():
                     no_internet_label_cooldown = 180
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
+                user_settings = return_user_settings()
             elif B_X.collidepoint(pos_x, pos_y) and exit_cooldown == 0:
                 run = False
             if not internet:
                 if B_RECONNECT.collidepoint(pos_x, pos_y):
                     internet = connection_check()
                 if internet:
-                    conn = http.client.HTTPSConnection("www.ecb.europa.eu")
-                    conn.request("GET", "/stats/eurofxref/eurofxref-daily.xml")
-                    res = conn.getresponse()
-                    data = res.read()
-                    root = ET.fromstring(data)
-                    rates = {}
-                    for i in root[2][0]:
-                        entry = i.attrib
-                        rates.update({entry["currency"]: float(entry["rate"])})
+                    rates = return_conversion_list()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
