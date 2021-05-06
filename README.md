@@ -22,7 +22,7 @@ Creating ReadMe's for your Github repository can be tedious.  I hope this templa
 ### Vlastnosti
 
 - Dark mode po celej aplikácií
-- Vždy najaktuálnejšie hodnoty pre konverziu mien či akcií na [trhu](trhu.md)
+- Vždy najaktuálnejšie hodnoty pre konverziu mien či akcií na trhu
 
 ---
 
