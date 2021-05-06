@@ -22,7 +22,7 @@ from cases.icon_list import icon_list
 
 
 def get_current_items(items: list, current_subinv: int):
-    return items[current_subinv*12:current_subinv*12+12]
+    return items[current_subinv * 12 : current_subinv * 12 + 12]
 
 
 def blit_items(items: list):
@@ -38,27 +38,28 @@ def blit_items(items: list):
     y_diff = 145
     for item in items:
         for icon_name in icon_list:
-            if item['name'] == icon_name['name']:
-                icon = icon_name['icon'] 
+            if item["name"] == icon_name["name"]:
+                icon = icon_name["icon"]
                 break
-        if item['rarity'] == 4:
+        if item["rarity"] == 4:
             item_bg = C_BG
-        elif item['rarity'] == 3:
+        elif item["rarity"] == 3:
             item_bg = R_BG
-        elif item['rarity'] == 2:
+        elif item["rarity"] == 2:
             item_bg = SR_BG
         else:
             item_bg = LEG_BG
-        WIN.blit(item_bg, (x-5, y))
+        WIN.blit(item_bg, (x - 5, y))
         WIN.blit(icon, (x, y))
-        WIN.blit(COUNTER, (x + 70, y + 75)) 
-        amount_to_display = str(item['amount']) if item['amount'] < 100 else "99"
+        WIN.blit(COUNTER, (x + 70, y + 75))
+        amount_to_display = str(item["amount"]) if item["amount"] < 100 else "99"
         label_amount = MAIN_FONT.render(str(amount_to_display), 1, (10, 10, 10))
         WIN.blit(label_amount, (x + 90 - label_amount.get_width() // 2, y + 82))
         x += x_diff
         if x > 450:
             x = 50
             y += y_diff
+
 
 def cases_app_inv():
     """
@@ -77,7 +78,7 @@ def cases_app_inv():
     B_OPENING = pygame.Rect(110, 105, 280, 75)
     B_BACK = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 65 - 20, 20, 60, 60)
-    
+
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
@@ -86,7 +87,7 @@ def cases_app_inv():
         WIN.blit(BG, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
-        WIN.blit(COUNTER, (35, 240)) 
+        WIN.blit(COUNTER, (35, 240))
 
         # LABELS
         label_subinv = MAIN_FONT.render(str(current_subinv + 1), 1, FONT_COLOR)
@@ -97,7 +98,6 @@ def cases_app_inv():
         current_items = get_current_items(read_inventory("by_rarity"), current_subinv)
         blit_items(current_items)
 
-
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:
             if B_BACK.collidepoint(pos_x, pos_y) and not cooldown:
@@ -106,10 +106,14 @@ def cases_app_inv():
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
             elif B_INV_FORWARD.collidepoint(pos_x, pos_y) and not cooldown:
-                current_subinv = current_subinv + 1 if current_subinv < 4 else current_subinv
+                current_subinv = (
+                    current_subinv + 1 if current_subinv < 4 else current_subinv
+                )
                 cooldown = FPS // 3
             elif B_INV_BACK.collidepoint(pos_x, pos_y) and not cooldown:
-                current_subinv = current_subinv - 1 if current_subinv > 0 else current_subinv
+                current_subinv = (
+                    current_subinv - 1 if current_subinv > 0 else current_subinv
+                )
                 cooldown = FPS // 3
             elif B_OPENING.collidepoint(pos_x, pos_y) and not cooldown:
                 cases_app_opening()

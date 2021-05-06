@@ -13,13 +13,19 @@ def read_inventory(sort_type="normal") -> dict:
     with open("cases/inventory.txt", "r") as file:
         for line in file.readlines():
             splitted = line.strip().split(",")
-            data.append({"name": splitted[0], "rarity": int(splitted[1]), "amount": int(splitted[2])})
+            data.append(
+                {
+                    "name": splitted[0],
+                    "rarity": int(splitted[1]),
+                    "amount": int(splitted[2]),
+                }
+            )
 
     if sort_type == "normal":
         return data
 
     elif sort_type == "by_rarity":
-        return sorted(data, key=lambda k: k['rarity']) 
+        return sorted(data, key=lambda k: k["rarity"])
 
 
 def add_to_inventory(item_to_add):
@@ -28,12 +34,12 @@ def add_to_inventory(item_to_add):
     """
     inventory = read_inventory()
     for item in inventory:
-        if  item_to_add["name"] == item["name"]:
-            item_to_add["amount"] = int(item["amount"]) + 1         
+        if item_to_add["name"] == item["name"]:
+            item_to_add["amount"] = int(item["amount"]) + 1
             inventory.remove(item)
             inventory.append(item_to_add)
             break
-    else: 
+    else:
         with open("cases/inventory.txt", "a") as file:
             file.write(f"{item_to_add['name']},{item_to_add['rarity']},1\n")
         return

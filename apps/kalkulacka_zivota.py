@@ -1,7 +1,19 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import BG_D, BG_L, SMALL_FONT, MAIN_FONT, BIG_FONT, BACK, MENU, FONT_COLOR_L, FONT_COLOR_D, BG_ZIVOT_L, BG_ZIVOT_D
+from utils.load_assets import (
+    BG_D,
+    BG_L,
+    SMALL_FONT,
+    MAIN_FONT,
+    BIG_FONT,
+    BACK,
+    MENU,
+    FONT_COLOR_L,
+    FONT_COLOR_D,
+    BG_ZIVOT_L,
+    BG_ZIVOT_D,
+)
 from settings import WIN, WIDTH, HEIGHT, WIDTH_H, HEIGHT_H, FPS, UI_COLOR
 from utils.user_settings_handling import return_user_settings
 from apps.settings_menu import settings_menu
@@ -47,7 +59,7 @@ def kalkulacka_zivota_app():
         user_settings = return_user_settings()
         FONT_COLOR = FONT_COLOR_L if user_settings["theme"] == "light" else FONT_COLOR_D
         BG_ZIVOT = BG_ZIVOT_L if user_settings["theme"] == "light" else BG_ZIVOT_D
-        
+
         WIN.blit(BG_ZIVOT, (0, 0))
         WIN.blit(BACK, (20, 20))
         WIN.blit(MENU, (WIDTH - 65 - 20, 20))
@@ -77,22 +89,45 @@ def kalkulacka_zivota_app():
                 label_result = MAIN_FONT.render(result, 1, FONT_COLOR)
                 WIN.blit(label_result, (130, HEIGHT_H + 80))
             else:
-                label_years = MAIN_FONT.render(f'Years: {str(result["years"])}', 1, FONT_COLOR)
-                label_months = MAIN_FONT.render(f'Months: {str(result["months"])}', 1, FONT_COLOR)
-                label_weeks = MAIN_FONT.render(f'Weeks: {str(result["weeks"])}', 1, FONT_COLOR)
-                label_days = MAIN_FONT.render(f'Days: {str(result["days"])}', 1, FONT_COLOR)
-                label_hours = MAIN_FONT.render(f'Hours: {str(result["hours"])}', 1, FONT_COLOR)
-                label_minutes = MAIN_FONT.render(f'Minutes: {str(result["minutes"])}', 1, FONT_COLOR)
-                label_seconds = MAIN_FONT.render(f'Seconds: {str(result["seconds"])}', 1, FONT_COLOR)
-                label_miliseconds = MAIN_FONT.render(f'Miliseconds: {str(result["miliseconds"])}', 1, FONT_COLOR)
-                to_blit = [label_years, label_months, label_weeks, label_days, label_hours, label_minutes, label_seconds, label_miliseconds]
+                label_years = MAIN_FONT.render(
+                    f'Years: {str(result["years"])}', 1, FONT_COLOR
+                )
+                label_months = MAIN_FONT.render(
+                    f'Months: {str(result["months"])}', 1, FONT_COLOR
+                )
+                label_weeks = MAIN_FONT.render(
+                    f'Weeks: {str(result["weeks"])}', 1, FONT_COLOR
+                )
+                label_days = MAIN_FONT.render(
+                    f'Days: {str(result["days"])}', 1, FONT_COLOR
+                )
+                label_hours = MAIN_FONT.render(
+                    f'Hours: {str(result["hours"])}', 1, FONT_COLOR
+                )
+                label_minutes = MAIN_FONT.render(
+                    f'Minutes: {str(result["minutes"])}', 1, FONT_COLOR
+                )
+                label_seconds = MAIN_FONT.render(
+                    f'Seconds: {str(result["seconds"])}', 1, FONT_COLOR
+                )
+                label_miliseconds = MAIN_FONT.render(
+                    f'Miliseconds: {str(result["miliseconds"])}', 1, FONT_COLOR
+                )
+                to_blit = [
+                    label_years,
+                    label_months,
+                    label_weeks,
+                    label_days,
+                    label_hours,
+                    label_minutes,
+                    label_seconds,
+                    label_miliseconds,
+                ]
 
                 y_diff = 0
                 for label in to_blit:
                     WIN.blit(label, (100, HEIGHT_H - 50 + y_diff))
                     y_diff += 40
-
-            
 
         # Zistovanie, ci nebolo kliknute na textove pole
         if click:

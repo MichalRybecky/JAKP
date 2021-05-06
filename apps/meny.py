@@ -25,7 +25,9 @@ def convert(rates, cur_amount, cur_from, cur_to):
         return "Incorrect format"
 
     if cur_from.get_text().lower() == "eur":
-        result = from_eur(rates[cur_to.get_text().upper()], float(cur_amount.get_text()))
+        result = from_eur(
+            rates[cur_to.get_text().upper()], float(cur_amount.get_text())
+        )
     else:
         result = from_xyz(
             rates[cur_from.get_text().upper()], float(cur_amount.get_text())

@@ -37,11 +37,15 @@ def cases_app_opening():
     B_CLASS_CASE = pygame.Rect(155, 530, 190, 150)
     B_BACK = pygame.Rect(20, 20, 60, 60)
     B_MENU = pygame.Rect(WIDTH - 65 - 20, 20, 60, 60)
-    
+
     while run:
         pos_x, pos_y = pygame.mouse.get_pos()
         user_settings = return_user_settings()
-        BG = BG_CASEKY_VOLBA_L if user_settings["theme"] == "light" else BG_CASEKY_VOLBA_D
+        BG = (
+            BG_CASEKY_VOLBA_L
+            if user_settings["theme"] == "light"
+            else BG_CASEKY_VOLBA_D
+        )
         FONT_COLOR = FONT_COLOR_L if user_settings["theme"] == "light" else FONT_COLOR_D
         WIN.blit(BG, (0, 0))
         WIN.blit(BACK, (20, 20))
@@ -59,9 +63,13 @@ def cases_app_opening():
                 run = False
             elif B_MENU.collidepoint(pos_x, pos_y):
                 settings_menu()
-            elif B_TRIP_CASE.collidepoint(pos_x, pos_y) or B_TRIP_LABEL.collidepoint(pos_x, pos_y):
+            elif B_TRIP_CASE.collidepoint(pos_x, pos_y) or B_TRIP_LABEL.collidepoint(
+                pos_x, pos_y
+            ):
                 case_opening_app(case_type="trip")
-            elif B_CLASS_CASE.collidepoint(pos_x, pos_y) or B_CLASS_LABEL.collidepoint(pos_x, pos_y):
+            elif B_CLASS_CASE.collidepoint(pos_x, pos_y) or B_CLASS_LABEL.collidepoint(
+                pos_x, pos_y
+            ):
                 case_opening_app(case_type="class")
             cooldown = FPS // 3
 

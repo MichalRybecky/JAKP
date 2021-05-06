@@ -96,8 +96,8 @@ def kalkulacka_app():
         except AttributeError:
             pass
 
-        #keys = pygame.key.get_pressed()
-        #if keys[pygame.K_RETURN]:
+        # keys = pygame.key.get_pressed()
+        # if keys[pygame.K_RETURN]:
         #    result = price_validation(stock_input.get_text().strip())
 
         # Event handling

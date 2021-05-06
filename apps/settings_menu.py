@@ -1,7 +1,7 @@
 import pygame
 import pygame_textinput
 
-from utils.load_assets import SETTINGS_MENU_L, SETTINGS_MENU_D 
+from utils.load_assets import SETTINGS_MENU_L, SETTINGS_MENU_D
 from settings import WIN, FPS, UI_COLOR
 from utils.user_settings_handling import return_user_settings
 from utils.user_settings_handling import write_user_settings
@@ -43,7 +43,7 @@ def settings_menu():
             if B_THEME_TOGGLE.collidepoint(pos_x, pos_y):
                 toggle_theme()
                 run = False
-                #click_cooldown = FPS // 3 
+                # click_cooldown = FPS // 3
             else:
                 run = False
 

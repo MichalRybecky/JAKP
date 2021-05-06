@@ -17,15 +17,13 @@ def open_case(case_type):
     elif drop <= 6:
         drop = 2
     elif drop <= 41:
-        drop = 3 
+        drop = 3
     else:
         drop = 4
 
     available_drops = []
     for item in icon_list:
-        if item['rarity'] == drop and item['collection'] == case_type:
+        if item["rarity"] == drop and item["collection"] == case_type:
             available_drops.append(item)
 
-    return available_drops[random.randint(0,len(available_drops)-1)]
-
-
+    return available_drops[random.randint(0, len(available_drops) - 1)]
