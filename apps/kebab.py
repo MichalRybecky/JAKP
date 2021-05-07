@@ -12,7 +12,7 @@ euro = pygame.font.Font("freesansbold.ttf", 20)
 
 # vypisanie uctu
 def vypisanie_uctu(kz, kp, tz, tp, FONT_COLOR):
-    penaze = kz * 3.8 + kp * 4.1 + tz * 4.1 + tp * 4.5
+    penaze = kz * 3.6 + kp * 4.1 + tz * 4.1 + tp * 4.6
     round_penaze = round(penaze, 2)
     penaze_na_obrazovke = kebab.render("" + str(round_penaze), True, FONT_COLOR)
     euro_na_obrazovke = euro.render("€", True, FONT_COLOR)
